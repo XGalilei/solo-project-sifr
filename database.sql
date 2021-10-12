@@ -12,24 +12,24 @@ CREATE TABLE "user" (
 -- feedback table: incomplete
 CREATE TABLE "feedback" (
     "id" SERIAL PRIMARY KEY,
-    "message" VARCHAR(1000) NOT NULL,
+    "message" TEXT NOT NULL,
     "date" DATE, -- incomplete
-    "user_id" FOREIGN KEY REFERENCES "user"."id"
+    "user_id" INT REFERENCES "user" NOT NULL
 ); 
 
 CREATE TABLE "attempts" (
     "id" SERIAL PRIMARY KEY,
     "success" BOOLEAN NOT NULL,
     "time" DATE,
-    "user_id" FOREIGN KEY REFERENCES "user"."id"
-    "challenge_id" FOREIGN KEY REFERENCES "challenges"."id"
+    "user_id" INT REFERENCES "user" NOT NULL
+    "challenge_id" INT REFERENCES "challenges" NOT NULL
 );
 
 CREATE TABLE "ciphers" (
     "id" SERIAL PRIMARY KEY,
-    "name" VARCHAR(255),
-    "description" VARCHAR(500),
-    "history" VARCHAR(2000)
+    "name" TEXT NOT NULL,
+    "description" TEXT NOT NULL,
+    "history" TEXT NOT NULL
 );
 
 CREATE TABLE "challenges" (
@@ -37,6 +37,6 @@ CREATE TABLE "challenges" (
     "encrypted" VARCHAR(500),
     "decrypted" VARCHAR(500),
     "key" VARCHAR(500),
-    "cipher_id" FOREIGN KEY REFERENCES "ciphers"."id",
-    "creator_id" FOREIGN KEY REFERENCES "user"."id"
+    "cipher_id" INT REFERENCES "ciphers" NOT NULL,
+    "creator_id" INT REFERENCES "user" NOT NULL
 );

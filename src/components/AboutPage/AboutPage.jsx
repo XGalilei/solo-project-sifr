@@ -9,7 +9,8 @@ function AboutPage() {
   return (
     <div className="container">
       <div>
-        <p>This about page is for anyone to read!</p>
+        <p>What does "sifr" mean, you might ask? (I know you probably won't, but I need some sort of set-up here)</p>
+        <p>Literally, it's the Arabic word for "zero", but it's also </p>
       </div>
     </div>
   );

@@ -21,21 +21,6 @@ function Nav() {
           </Link>
         }
 
-        {/* If a user is logged in, show these links */}
-        {user.id && (
-          <>
-            <Link className="navLink" to="/user">
-              Home
-            </Link>
-
-            <Link className="navLink" to="/info">
-              Info Page
-            </Link>
-
-            <LogOutButton className="navLink" />
-          </>
-        )}
-
         <Link className="navLink" to="/about">
           About
         </Link>
@@ -43,9 +28,44 @@ function Nav() {
         <Link className="navLink" to="/cipher">
           Ciphers
         </Link>
+
+        {/* If a user is logged in, show these links */}
+        {user.id && (
+          <>
+            <Link className="navLink" to="/challenges">
+              Challenges
+            </Link>
+
+            <Link className="navLink" to="/feedback">
+              Feedback
+            </Link>
+
+            <Link className="navLink" to="/user">
+              Profile
+            </Link>
+
+            <LogOutButton className="navLink" />
+          </>
+        )}
+
+
       </div>
     </div>
   );
 }
 
 export default Nav;
+/**
+ *
+ * {user.id && (
+ *  <>
+ *    <Link className="navLink" to="/challenges">
+ *      Challenges
+ *    </Link>
+ *
+ *    <Link className="navLink" to="/feedback">
+ *      Feedback
+ *    </Link>
+ *  </>
+ * )}
+ */
