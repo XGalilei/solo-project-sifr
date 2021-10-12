@@ -19,6 +19,8 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
+import CipherNav from '../CipherNav/CipherNav';
+import FeedbackForm from '../FeedbackForm/FeedbackForm';
 
 import './App.css';
 
@@ -108,6 +110,22 @@ function App() {
               // Otherwise, show the Landing page
               <LandingPage />
             }
+          </Route>
+
+          <Route exact path="/challenges">
+          </Route>
+
+          <Route exact path="/cipher">
+          <CipherNav />
+          </Route>
+
+          <Route exact path="/feedback">
+            {user.id ?
+              <FeedbackForm />
+              :
+              <p>Only registered users can leave feedback</p>
+            }
+
           </Route>
 
           {/* If none of the other routes matched, we will show a 404. */}
