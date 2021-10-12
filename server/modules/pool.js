@@ -28,6 +28,8 @@ if (process.env.DATABASE_URL) {
   };
 } else {
   config = {
+    user: 'postgres',
+    password: 'access-granted', 
     host: 'localhost', // Server hosting the postgres database
     port: 5432, // env var: PGPORT
     database: 'prime_app', // CHANGE THIS LINE! env var: PGDATABASE, this is likely the one thing you need to change to get up and running
