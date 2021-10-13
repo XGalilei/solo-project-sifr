@@ -24,7 +24,9 @@ router.post('/', (req, res) => {
   // POST route code here
   const queryText = `INSERT INTO "feedback" ("message", "user_id")
   VALUES ($2, $1)`;
-  pool.query(queryText, ['temporary', req.user]).then((result) => {
+  console.log(req.body);
+  pool.query(queryText, [req.user.id, req.body.text]).then((result) => {
+    console.log('method running');
     res.sendStatus(200);
   }).catch(error => {
     console.log("Error in /POST feedback:", error);

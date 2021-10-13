@@ -9,10 +9,38 @@ function FeedbackForm(props) {
   const store = useSelector((store) => store);
   const dispatch = useDispatch();
   const history = useHistory();
+  const [feedback, setFeedback] = useState('');
+
+  const handleSubmit = () => {
+    //console.log(feedback);
+    dispatch({
+      type: 'POST_FEEDBACK',
+      payload: {text: feedback}
+    });
+    setFeedback('');
+    history.push('/');
+  }
+  
+  const handleCancel = () => {
+    setFeedback('');
+    history.push('/');
+  }
 
   return (
     <div>
       <h2>Under Construction...</h2>
+      <form>
+        <textarea placeholder="Leave feedback here"
+        value={feedback}
+        cols={70} 
+        onChange={(event) => setFeedback(event.target.value)}
+        >
+
+        </textarea>
+        <br/>
+        <button class="btn" onClick={handleCancel}>Cancel</button>
+        <button class="btn" onClick={handleSubmit}>Submit</button>
+      </form>
     </div>
   );
 }

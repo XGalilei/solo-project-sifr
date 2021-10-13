@@ -17,11 +17,10 @@ CREATE TABLE "ciphers" (
     "type_code" INT NOT NULL
 );
 
--- feedback table: incomplete
 CREATE TABLE "feedback" (
     "id" SERIAL PRIMARY KEY,
     "message" TEXT NOT NULL,
-    "date" DATE,
+    "date" DATE DEFAULT NOW(),
     "user_id" INT REFERENCES "user" NOT NULL
 ); 
 
