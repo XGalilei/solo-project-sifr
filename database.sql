@@ -9,28 +9,21 @@ CREATE TABLE "user" (
     "password" VARCHAR (1000) NOT NULL
 );
 
+CREATE TABLE "ciphers" (
+    "id" SERIAL PRIMARY KEY,
+    "name" VARCHAR(255) NOT NULL,
+    "description" TEXT NOT NULL,
+    "history" TEXT NOT NULL,
+    "type_code" INT NOT NULL
+);
+
 -- feedback table: incomplete
 CREATE TABLE "feedback" (
     "id" SERIAL PRIMARY KEY,
     "message" TEXT NOT NULL,
-    "date" DATE, -- incomplete
+    "date" DATE,
     "user_id" INT REFERENCES "user" NOT NULL
 ); 
-
-CREATE TABLE "attempts" (
-    "id" SERIAL PRIMARY KEY,
-    "success" BOOLEAN NOT NULL,
-    "time" DATE,
-    "user_id" INT REFERENCES "user" NOT NULL
-    "challenge_id" INT REFERENCES "challenges" NOT NULL
-);
-
-CREATE TABLE "ciphers" (
-    "id" SERIAL PRIMARY KEY,
-    "name" TEXT NOT NULL,
-    "description" TEXT NOT NULL,
-    "history" TEXT NOT NULL
-);
 
 CREATE TABLE "challenges" (
     "id" SERIAL PRIMARY KEY,
@@ -40,3 +33,12 @@ CREATE TABLE "challenges" (
     "cipher_id" INT REFERENCES "ciphers" NOT NULL,
     "creator_id" INT REFERENCES "user" NOT NULL
 );
+
+CREATE TABLE "attempts" (
+    "id" SERIAL PRIMARY KEY,
+    "success" BOOLEAN NOT NULL,
+    "time" DATE,
+    "user_id" INT REFERENCES "user" NOT NULL,
+    "challenge_id" INT REFERENCES "challenges" NOT NULL
+);
+

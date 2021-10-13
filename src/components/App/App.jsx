@@ -112,6 +112,7 @@ function App() {
             }
           </Route>
 
+          {/* Directs a logged-in user to the challenges page */}
           <Route exact path="/challenges">
           </Route>
 

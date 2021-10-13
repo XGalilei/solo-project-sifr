@@ -14,6 +14,13 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
   // POST route code here
+  const queryText = `INSERT INTO "feedback" ()
+  VALUES ()`;
+  pool.query(queryText).then((result) => {
+    res.sendStatus(200);
+  }).catch(error => {
+    console.log("Error in ")
+  })
 });
 
 module.exports = router;

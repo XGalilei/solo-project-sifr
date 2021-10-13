@@ -13,7 +13,7 @@ function CipherNav() {
                 <br />
                 <div>
                     {/*Ciphers should be available no matter who you are, so */}
-                    <Link className="navLink" to="/about">
+                    <Link className="navLink" to="/overview">
                         Overview
                     </Link>
 

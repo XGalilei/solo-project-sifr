@@ -1,3 +1,5 @@
+const ASCII_UPPER_BASE = 65; 
+const ASCII_LOWER_BASE = 97;
 
 /**
  * 
@@ -19,10 +21,20 @@ function decrypt(message, key, cipherNumber) {
 
 }
 
+// HELPER METHOD
+function toAsciiArray(message) {
+    let result = [];
+    for(let i = 0; i < message.length; i++) {
+        result.push(message.charCodeAt(i));
+    }
+
+    return result;
+}
+
 //CAESAR CIPHER SUPPORT
 
 function encryptCaesar(message, key) {
-
+    
 }
 
 function decryptCaesar(message, key) {

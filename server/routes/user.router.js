@@ -47,4 +47,9 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+// Deletes the account of the logged in user
+router.delete('/', (req, res) => {
+  const queryText = `DELETE FROM "user" WHERE "id" = $1;`;
+})
+
 module.exports = router;
