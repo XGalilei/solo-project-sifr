@@ -12,12 +12,13 @@ function FeedbackForm(props) {
   const [feedback, setFeedback] = useState('');
 
   const handleSubmit = () => {
-    console.log(feedback);
+    //console.log(feedback);
     dispatch({
       type: 'POST_FEEDBACK',
-      payload: feedback
+      payload: {text: feedback}
     });
     setFeedback('');
+    history.push('/');
   }
   
   const handleCancel = () => {
@@ -31,13 +32,14 @@ function FeedbackForm(props) {
       <form>
         <textarea placeholder="Leave feedback here"
         value={feedback}
+        cols={70} 
         onChange={(event) => setFeedback(event.target.value)}
         >
 
         </textarea>
         <br/>
-        <button onClick={handleCancel}>Cancel</button>
-        <button onClick={handleSubmit}>Submit</button>
+        <button class="btn" onClick={handleCancel}>Cancel</button>
+        <button class="btn" onClick={handleSubmit}>Submit</button>
       </form>
     </div>
   );

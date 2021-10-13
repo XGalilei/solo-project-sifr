@@ -25,7 +25,7 @@ router.post('/', (req, res) => {
   const queryText = `INSERT INTO "feedback" ("message", "user_id")
   VALUES ($2, $1)`;
   console.log(req.body);
-  pool.query(queryText, [req.user.id, req.body]).then((result) => {
+  pool.query(queryText, [req.user.id, req.body.text]).then((result) => {
     console.log('method running');
     res.sendStatus(200);
   }).catch(error => {
