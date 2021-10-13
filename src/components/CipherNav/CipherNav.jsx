@@ -13,15 +13,16 @@ function CipherNav() {
                 <br />
                 <div>
                     {/*Ciphers should be available no matter who you are, so */}
-                    <Link className="navLink" to="/overview">
+                    <Link className="navLink" to="/cipher">
                         Overview
                     </Link>
 
-                    <Link className="navLink" to="/cipher">
+                    {/* This should only appear for ciphers/codes with the correct type id */}
+                    <Link className="navLink" to="/cipher-testable">
                         Testable Cipher
                     </Link>
 
-                    <Link className="navLink" to="/history">
+                    <Link className="navLink" to="/cipher-history">
                         History
                     </Link>
                 </div>

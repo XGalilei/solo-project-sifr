@@ -22,6 +22,10 @@ import RegisterPage from '../RegisterPage/RegisterPage';
 import CipherNav from '../CipherNav/CipherNav';
 import FeedbackForm from '../FeedbackForm/FeedbackForm';
 
+import SubpageCipher from '../SubpageCipher/SubpageCipher';
+import SubpageHistory from '../SubpageHistory/SubpageHistory';
+import SubpageOverview from '../SubpageOverview/SubpageOverview';
+
 import './App.css';
 
 function App() {
@@ -117,7 +121,18 @@ function App() {
           </Route>
 
           <Route exact path="/cipher">
-          <CipherNav />
+            <CipherNav/>
+            <SubpageOverview/>
+          </Route>
+
+          <Route exact path="/cipher-testable">
+            <CipherNav/>
+            <SubpageCipher/>
+          </Route>
+
+          <Route exact path="/cipher-history">
+            <CipherNav/>
+            <SubpageHistory/>
           </Route>
 
           <Route exact path="/feedback">
