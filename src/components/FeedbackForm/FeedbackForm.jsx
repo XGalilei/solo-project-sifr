@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
-import {useSelector} from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 
 // this form is used for submitting feedback to the database for further analysis
 function FeedbackForm(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
   const store = useSelector((store) => store);
-  const [heading, setHeading] = useState('Functional Component');
+  const dispatch = useDispatch();
+  const history = useHistory();
 
   return (
     <div>

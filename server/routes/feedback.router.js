@@ -1,12 +1,20 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const {
+  rejectUnauthenticated,
+} = require('../modules/authentication-middleware');
 
 /**
  * GET route template
  */
 router.get('/', (req, res) => {
-  // GET route code here
+  const queryText = `SELECT * FROM "feedback";`;
+  pool.query(queryText).then((result) => {
+    res.send(result.rows);
+  }).catch(error => {
+    console.log('Error in /GET feedback:', error);
+  })
 });
 
 /**
@@ -14,12 +22,12 @@ router.get('/', (req, res) => {
  */
 router.post('/', (req, res) => {
   // POST route code here
-  const queryText = `INSERT INTO "feedback" ()
-  VALUES ()`;
-  pool.query(queryText).then((result) => {
+  const queryText = `INSERT INTO "feedback" ("message", "user_id")
+  VALUES ($2, $1)`;
+  pool.query(queryText, ['temporary', req.user]).then((result) => {
     res.sendStatus(200);
   }).catch(error => {
-    console.log("Error in ")
+    console.log("Error in /POST feedback:", error);
   })
 });
 
