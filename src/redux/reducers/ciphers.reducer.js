@@ -1,4 +1,6 @@
-const ciphersReducer = (state = [], action) => {
+import { combineReducers } from "redux";
+
+const allCiphers = (state = [], action) => {
     switch(action.type) {
         case 'SET_CIPHERS':
             return action.payload;
@@ -7,4 +9,16 @@ const ciphersReducer = (state = [], action) => {
     }
 };
 
-export default ciphersReducer;
+const singleCipher = (state = {}, action) => {
+    switch(action.type) {
+        case 'SET_CIPHER':
+            return action.payload;
+        default:
+            return state;
+    }
+};
+
+export default combineReducers({
+   allCiphers,
+   singleCipher 
+});

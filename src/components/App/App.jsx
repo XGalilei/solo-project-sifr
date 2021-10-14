@@ -120,18 +120,16 @@ function App() {
           <Route exact path="/challenges">
           </Route>
 
-          <Route exact path="/cipher">
-            <CipherNav/>
-            <SubpageOverview/>
-          </Route>
+          <Route 
+          exact path="/cipher/:id"
+            component={SubpageOverview}
+          />
 
-          <Route exact path="/cipher-testable">
-            <CipherNav/>
+          <Route exact path="/cipher-testable/:id">
             <SubpageCipher/>
           </Route>
 
-          <Route exact path="/cipher-history">
-            <CipherNav/>
+          <Route exact path="/cipher-history/:id">
             <SubpageHistory/>
           </Route>
 
