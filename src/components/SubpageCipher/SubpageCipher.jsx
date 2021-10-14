@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import {useSelector} from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import CipherNav from '../CipherNav/CipherNav';
 
 // Basic functional component structure for React with default state
@@ -8,36 +8,34 @@ import CipherNav from '../CipherNav/CipherNav';
 function SubpageCipher(props) {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
-  const store = useSelector((store) => store);
+  const dispatch = useDispatch();
+  const cipher = useSelector(store => store.ciphers.singleCipher);
+
+  useEffect(() => {
+    console.log(props);
+    const id = props.match.params.id;
+    dispatch({type: 'FETCH_SINGLE_CIPHER', payload: id})
+  }, []);
+
   const [message, setMessage] = useState('');
   //true is encrypt, false is decrypt
   const [mode, setMode] = useState(true);
 
-  const testCipher = {
-    id: 1,
-    name: 'Morse Code',
-    description: 'Used as a means of encoding telegraph signals',
-    history: 'First invented in the early 19th century',
-    type_code: 2
-  };
 
-  function encrypt() {
-
-  }
-
-  function decrypt() {
-
+  function convert(str) {
+    console.log(mode)
   }
 
   return (
     <div>
-      <CipherNav props={testCipher}/>
+      <CipherNav props={cipher}/>
       <h2>{mode ? "Encrypt" : "Decrypt"} Mode</h2>
       {mode ? 'Plaintext:' : 'Ciphertext:'}<input/>
       <br/>
-      {testCipher.type_code % 2 === 1 ?<>{'Key: '} <input/><br/></>: ''}
+      {cipher.type_code % 2 === 1 ?<>{'Key: '} <input/><br/></>: ''}
       <button onClick={() => {setMode(!mode)}}>Switch Mode</button>
-      <button>{mode ? "Encrypt" : "Decrypt"}</button>
+      <button onClick={() => convert(message)}>
+        {mode ? "Encrypt" : "Decrypt"}</button>
     </div>
   );
 }

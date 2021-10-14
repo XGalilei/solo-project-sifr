@@ -125,13 +125,12 @@ function App() {
             component={SubpageOverview}
           />
 
-          <Route exact path="/cipher-testable/:id">
-            <SubpageCipher/>
-          </Route>
+          <Route exact path="/cipher-testable/:id"
+          component={SubpageCipher}
+          />
 
-          <Route exact path="/cipher-history/:id">
-            <SubpageHistory/>
-          </Route>
+          <Route exact path="/cipher-history/:id" 
+          component={SubpageHistory} />
 
           <Route exact path="/feedback">
             {user.id ?

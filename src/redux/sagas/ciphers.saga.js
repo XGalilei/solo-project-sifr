@@ -20,7 +20,7 @@ function* fetchCiphers() {
 function* fetchSingleCipher(action) {
     try {
         const cipher = action.payload;
-        const response = yield axios.get(`/api/cipher/${cipher.id}`);
+        const response = yield axios.get(`/api/cipher/${cipher}`);
         yield put({type: 'SET_CIPHER', payload: response.data})
     }
     catch(error) {

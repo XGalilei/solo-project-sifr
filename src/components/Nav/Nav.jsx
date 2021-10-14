@@ -38,7 +38,8 @@ function Nav() {
             return (
                 <Link className="dropdown-content"
                   key={cipher.id}
-                  to={`/cipher/${cipher.id}`} >{cipher.name}</Link>
+                  to={`/cipher/${cipher.id}`} >{cipher.name}
+                </Link>
 
             );
           })}

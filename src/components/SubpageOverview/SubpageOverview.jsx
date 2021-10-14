@@ -1,5 +1,5 @@
-import React, { useDispatch, useEffect, useState } from 'react';
-import {useSelector} from 'react-redux';
+import React, { useEffect, useState } from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 import CipherNav from '../CipherNav/CipherNav';
 
 // Basic functional component structure for React with default state
@@ -7,19 +7,21 @@ import CipherNav from '../CipherNav/CipherNav';
 // component name TemplateFunction with the name for the new component.
 function SubpageOverview(props) {
 
-  const testCipher = {
-    id: 1,
-    name: 'Morse Code',
-    description: 'Used as a means of encoding telegraph signals',
-    history: 'First invented in the early 19th century',
-    type_code: 2
-  };
+  const dispatch = useDispatch();
+
+  const cipher = useSelector(store => store.ciphers.singleCipher);
+
+  useEffect(() => {
+    console.log(props);
+    const id = props.match.params.id;
+    dispatch({type: 'FETCH_SINGLE_CIPHER', payload: id})
+  }, []);
 
   return (
     <div>
-      <CipherNav props= {testCipher}/>
+      <CipherNav props= {cipher}/>
       <h2>Overview</h2>
-      <p>{testCipher.description}</p>
+      <p>{cipher.description}</p>
     </div>
   );
 }
