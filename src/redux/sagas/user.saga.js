@@ -24,6 +24,10 @@ function* fetchUser() {
   }
 }
 
+function* deleteUser() {
+  
+}
+
 function* userSaga() {
   yield takeLatest('FETCH_USER', fetchUser);
 }

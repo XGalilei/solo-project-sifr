@@ -40,3 +40,25 @@
 .navLink:hover {
   background-color: #008183;
 }
+
+.dropdown {
+  display: inline-block;
+  overflow: hidden;
+  color: #f2f2f2;
+
+  z-index: 1;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #00acb0;
+}
+
+.dropdown:hover .dropdown-content{
+  display: block;
+}
+
+.dropdown-content:hover {
+  background-color: #008183;
+}

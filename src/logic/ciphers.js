@@ -1,6 +1,15 @@
 const ASCII_UPPER_BASE = 65; 
 const ASCII_LOWER_BASE = 97;
 
+const morse_code = ['=.===', '===.=.=.=', '===.=.===.==', '===.=.=',
+'=', '=.=.===.=', '===.===.=', '=.=.=.=',
+'=.=', '=.===.===.===', '===.=.===', '=.===.=.=',
+'===.===', '===.=', '===.===.===', '=.===.===.=',
+'===.===.=.===', '=.===.=','=.=.=', '===',
+'=.=.===', '=.=.=.===', '=.===.===', '===.=.=.===',
+'===.=.===.===', '===.===.=.='
+]
+
 /**
  * 
  * @param {*} message the
@@ -49,4 +58,24 @@ function encryptVigenere(message, key) {
 
 function decryptVigenere(message, key) {
 
+}
+
+// MORSE CODE SUPPORT
+function encodeMorse(message) {
+    let result = [];
+    for(let i = 0; i < message.length; i++) {
+        const value = message.charCodeAt(i) - ASCII_UPPER_BASE;
+        result.push(morse_code[value]);
+    }
+    let fullResult = result[0];
+    for(let i = 1; i < result.length; i++) {
+        fullResult.append('...' + result[i]);
+    }
+    return result;
+
+}
+
+function decodeMorse(message) {
+    let arr = message.split('...');
+    return result;
 }
