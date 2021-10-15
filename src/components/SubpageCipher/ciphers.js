@@ -48,7 +48,7 @@ export function decrypt(message, key, cipherNumber) {
 function toAsciiArray(message) {
     let result = [];
     for(let i = 0; i < message.length; i++) {
-        result.push(message.charCodeAt(i) - ASCII_UPPER_BASE);
+        result.push(message.charCodeAt(i) + 1 - ASCII_UPPER_BASE);
     }
 
     return result;
@@ -57,13 +57,37 @@ function toAsciiArray(message) {
 //CAESAR CIPHER SUPPORT
 
 function encryptCaesar(message, key) {
-    const arr = toAsciiArray(message);
-    return 'encrypting caesar';
+    const arr = toAsciiArray(message.toUpperCase());
+    const modKey = key.toUpperCase().charCodeAt(0) - ASCII_UPPER_BASE;
+    let result = '';
+    for(let i = 0; i < arr.length; i++) {
+        let temp = (arr[i] + modKey) % 26;
+        result += String.fromCharCode(temp + ASCII_UPPER_BASE - 1);
+    }
+    return result;
+
 }
 
+/**
+ * Decrypts a 
+ * @param {*} message 
+ * @param {*} key 
+ * @returns 
+ */
 function decryptCaesar(message, key) {
-    const arr = toAsciiArray(message);
-    return 'decrypting caesar';
+    const arr = toAsciiArray(message.toUpperCase());
+    const modKey = key.toUpperCase().charCodeAt(0) - ASCII_UPPER_BASE;
+    let result = '';
+    for(let i = 0; i < arr.length; i++) {
+        let temp = (arr[i] - modKey) % 26;
+
+        //used to correct negative modulo values
+        if(temp < 0) {
+            temp += 26;
+        }
+        result += String.fromCharCode(temp + ASCII_UPPER_BASE - 1);
+    }
+    return result;
 }
 
 //VIGENERE CIPHER SUPPORT
