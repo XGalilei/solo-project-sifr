@@ -26,8 +26,9 @@ import SubpageCipher from '../SubpageCipher/SubpageCipher';
 import SubpageHistory from '../SubpageHistory/SubpageHistory';
 import SubpageOverview from '../SubpageOverview/SubpageOverview';
 
-import './App.css';
+import ChallengeList from '../ChallengeList/ChallengeList';
 
+import './App.css';
 function App() {
   const dispatch = useDispatch();
 
@@ -118,6 +119,7 @@ function App() {
 
           {/* Directs a logged-in user to the challenges page */}
           <Route exact path="/challenges">
+            <ChallengeList/>
           </Route>
 
           <Route 

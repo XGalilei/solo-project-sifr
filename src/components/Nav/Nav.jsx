@@ -35,12 +35,16 @@ function Nav() {
         <div className="dropdown">
           Ciphers
           {ciphers.map(cipher => {
+            console.log(cipher);
             return (
-                <Link className="dropdown-content"
+              <div className="dropdown-content">
+                  <Link 
                   key={cipher.id}
-                  to={`/cipher/${cipher.id}`} >{cipher.name}
+                  to={`/cipher/${cipher.id}`} 
+                  >
+                    {cipher.name}
                 </Link>
-
+                </div>
             );
           })}
         </div>

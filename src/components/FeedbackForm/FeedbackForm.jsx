@@ -38,8 +38,8 @@ function FeedbackForm(props) {
 
         </textarea>
         <br/>
-        <button class="btn" onClick={handleCancel}>Cancel</button>
-        <button class="btn" onClick={handleSubmit}>Submit</button>
+        <button className="btn" onClick={handleCancel}>Cancel</button>
+        <button className="btn" onClick={handleSubmit}>Submit</button>
       </form>
     </div>
   );
