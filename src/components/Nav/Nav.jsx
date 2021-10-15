@@ -11,7 +11,6 @@ function Nav() {
 
   useEffect(() => {
     dispatch({ type: 'FETCH_CIPHERS' });
-    console.log(ciphers);
   }, []);
 
   return (

@@ -1,6 +1,6 @@
 import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import ChallengeListItem from '../ChallengeListItem/ChallengeListItem';
 
 /**
  * Holds all challenges from the database and enters them in the
@@ -17,6 +17,11 @@ function ChallengeList() {
 
     return <div>
         <h2>Under Construction...</h2>
+        {challenges.map(challenge => {
+            <p>{challenge.title}</p>
+            //<ChallengeListItem />
+        })
+        }
     </div>;
 }
 

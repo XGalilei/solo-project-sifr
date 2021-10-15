@@ -27,9 +27,10 @@ function* fetchUser() {
 //will be fired on "DELETE_USER" actions
 function* deleteUser(action) {
   try{
+    
     const userId = action.payload;
-    const response = yield axios.delete(`/api/user/${userId}`);
-    yield put({type: 'SET_USER', payload: response.data});
+    yield put({type: 'LOGOUT'});
+    yield axios.delete(`/api/user/${userId}`);
   }
   catch (error) {
     console.log('Delete user failed:', error);

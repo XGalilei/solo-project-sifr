@@ -48,11 +48,11 @@ router.post('/logout', (req, res) => {
 });
 
 // Deletes the account of the logged in user
-router.delete('/', (req, res) => {
-  const userId = req.user.id;
-  req.logout();
+router.delete('/:id', (req, res) => {
+  const userId = req.params.id;
   const queryText = `DELETE FROM "user" WHERE "id" = $1;`;
-  pool.query(queryText, user.id).then(() => {
+  console.log(userId);
+  pool.query(queryText, [userId]).then((result) => {
     res.sendStatus(200);
   }).catch((error) => {
     console.log('User deletion failed:', error);

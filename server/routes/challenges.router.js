@@ -22,8 +22,22 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  * POST route template
  */
 router.post('/', rejectUnauthenticated, (req, res) => {
-  //const queryText = `INSERT INTO "challenges ("")
-  //VALUES ();`;
+  const queryText = `INSERT INTO "challenges"
+  ("encrypted", "decrypted", "key", "cipher_id", "creator_id")
+  VALUES ($1 $2 $3 $4 $5);`;
+  const cipherText = req.body.encrypted;
+  const plainText = req.body.decrypted;
+  const key = req.body.key;
+  const cipherId = req.body.cipherId;
+  const creatorId = req.user.id;
+
+  pool.query(queryText, [cipherText, plainText, key, cipherId, creatorId])
+  .then(result => {
+    res.sendStatus(200);
+  }).catch(error => {
+    console.log('Error in /POST challenges', error);
+    res.sendStatus(500);
+  })
 });
 
 module.exports = router;
