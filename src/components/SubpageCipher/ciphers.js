@@ -16,9 +16,16 @@ const morse_code = ['=.===', '===.=.=.=', '===.=.===.==', '===.=.=',
  * @param {*} key the key necessary for encryption
  * @param {*} cipherNumber references the proper cipher
  */
-function encrypt(message, key, cipherNumber) {
-
-}
+export function encrypt(message, key, cipherNumber) {
+    switch(cipherNumber) {
+        case 1:
+            return encodeMorse(message);
+        case 2:
+            return encryptCaesar(message, key);
+        case 3:
+            return encryptVigenere(message, key);
+    }
+};
 
 /**
  * 
@@ -26,15 +33,22 @@ function encrypt(message, key, cipherNumber) {
  * @param {*} key 
  * @param {*} cipherNumber 
  */
-function decrypt(message, key, cipherNumber) {
-
-}
+export function decrypt(message, key, cipherNumber) {
+    switch(cipherNumber) {
+        case 1:
+            return decodeMorse(message);
+        case 2:
+            return decryptCaesar(message, key);
+        case 3:
+            return decryptVigenere(message, key);
+    }
+};
 
 // HELPER METHOD
 function toAsciiArray(message) {
     let result = [];
     for(let i = 0; i < message.length; i++) {
-        result.push(message.charCodeAt(i));
+        result.push(message.charCodeAt(i) - ASCII_UPPER_BASE);
     }
 
     return result;
@@ -43,11 +57,13 @@ function toAsciiArray(message) {
 //CAESAR CIPHER SUPPORT
 
 function encryptCaesar(message, key) {
-    
+    const arr = toAsciiArray(message);
+    return 'encrypting caesar';
 }
 
 function decryptCaesar(message, key) {
-
+    const arr = toAsciiArray(message);
+    return 'decrypting caesar';
 }
 
 //VIGENERE CIPHER SUPPORT

@@ -20,7 +20,7 @@ router.get('/', (req, res) => {
 /**
  * POST route template
  */
-router.post('/', (req, res) => {
+router.post('/', rejectUnauthenticated, (req, res) => {
   // POST route code here
   const queryText = `INSERT INTO "feedback" ("message", "user_id")
   VALUES ($2, $1)`;
