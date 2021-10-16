@@ -121,24 +121,31 @@ function App() {
 
           {/* Directs a logged-in user to the challenges page */}
           <Route exact path="/challenges">
-            <ChallengePage/>
+            {user.id ?
+              <ChallengePage />
+              : <p>Only registered users can access challenges</p>
+            }
+
           </Route>
 
           <Route exact path="/add-challenge">
-            <NewChallengeForm />
+            {user.id ?
+              <NewChallengeForm />
+              : <p>Only registered users can add new challenges</p>
+            }
           </Route>
 
-          <Route 
-          exact path="/cipher/:id"
+          <Route
+            exact path="/cipher/:id"
             component={SubpageOverview}
           />
 
           <Route exact path="/cipher-testable/:id"
-          component={SubpageCipher}
+            component={SubpageCipher}
           />
 
-          <Route exact path="/cipher-history/:id" 
-          component={SubpageHistory} />
+          <Route exact path="/cipher-history/:id"
+            component={SubpageHistory} />
 
           <Route exact path="/feedback">
             {user.id ?
