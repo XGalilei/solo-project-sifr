@@ -23,15 +23,16 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  */
 router.post('/', rejectUnauthenticated, (req, res) => {
   const queryText = `INSERT INTO "challenges"
-  ("encrypted", "decrypted", "key", "cipher_id", "creator_id")
-  VALUES ($1 $2 $3 $4 $5);`;
+  ("encrypted", "decrypted", "key", "cipher_id", "creator_id", "title")
+  VALUES ($1, $2, $3, $4, $5, $6);`;
   const cipherText = req.body.encrypted;
   const plainText = req.body.decrypted;
   const key = req.body.key;
   const cipherId = req.body.cipherId;
   const creatorId = req.user.id;
-
-  pool.query(queryText, [cipherText, plainText, key, cipherId, creatorId])
+  const title = req.body.title;
+  console.log('IN /POST', req.body);
+  pool.query(queryText, [cipherText, plainText, key, cipherId, creatorId, title])
   .then(result => {
     res.sendStatus(200);
   }).catch(error => {

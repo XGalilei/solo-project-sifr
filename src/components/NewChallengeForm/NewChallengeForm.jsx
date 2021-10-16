@@ -1,13 +1,14 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {encrypt} from '../SubpageCipher/ciphers.js';
 
 function NewChallengeForm() {
 
     const [title, setTitle] = useState('');
     const [cipher, setCipher] = useState({});
     const [plaintext, setPlainText] = useState('');
-
+    const [key, setKey] = useState('');
 
     const ciphers = useSelector(store => store.ciphers.allCiphers);
     const dispatch = useDispatch();
@@ -21,11 +22,16 @@ function NewChallengeForm() {
     const submitChallenge = () => {
         console.log(title);
         console.log(cipher.name);
+        const ciphertext = encrypt(plaintext, key, cipher.id);
         const challengeMid = {
             title: title,
-            cipher: cipher.id,
-            plaintext: plaintext,
+            cipherId: cipher.id,
+            decrypted: plaintext,
+            encrypted: ciphertext,
+            key: key
         }
+        dispatch({type: 'ADD_CHALLENGE', payload: challengeMid});
+        console.log(challengeMid);
     }
 
     //only show the form information once a cipher has been chosen
@@ -43,6 +49,9 @@ function NewChallengeForm() {
                         onClick={() => {
                             setCipher(cipherOp);
                             setSelected(true);
+                            if(cipherOp.type_code === 2) {
+                                setKey('');
+                            }
                         }}
                     >
                         {cipherOp.name}
@@ -60,7 +69,10 @@ function NewChallengeForm() {
                     onChange={(event) => setPlainText(event.target.value)}
                 />
                 {cipher.type_code === 1
-                    ? <input placeholder="key" />
+                    ? <input placeholder="key" 
+                    value={key}
+                    onChange={(event) => setKey(event.target.value)}
+                    />
                     : ''}
                 <button>Submit</button>
             </> : ''}

@@ -27,7 +27,7 @@ app.use(passport.session());
 
 /* Routes */
 app.use('/api/user', userRouter);
-app.use('/api/challenge', challengesRouter);
+app.use('/api/challenges', challengesRouter);
 app.use('/api/cipher', cipherRouter);
 app.use('/api/attempts', attemptsRouter);
 app.use('/api/feedback', feedbackRouter);
