@@ -5,6 +5,7 @@ import userSaga from './user.saga';
 import feedbackSaga from './feedback.saga';
 import ciphersSaga from './ciphers.saga';
 import challengesSaga from './challenges.saga';
+import attemptsSaga from './attempts.saga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -21,5 +22,6 @@ export default function* rootSaga() {
     feedbackSaga(),
     ciphersSaga(),
     challengesSaga(),
+    attemptsSaga()
   ]);
 }

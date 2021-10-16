@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 import {encrypt} from '../SubpageCipher/ciphers.js';
 
 function NewChallengeForm() {
@@ -13,6 +14,7 @@ function NewChallengeForm() {
     const ciphers = useSelector(store => store.ciphers.allCiphers);
     const dispatch = useDispatch();
     const [selected, setSelected] = useState(false);
+    const history = useHistory();
 
 
     useEffect(() => {
@@ -32,6 +34,7 @@ function NewChallengeForm() {
         }
         dispatch({type: 'ADD_CHALLENGE', payload: challengeMid});
         console.log(challengeMid);
+        history.push('/challenges');
     }
 
     //only show the form information once a cipher has been chosen
@@ -78,6 +81,7 @@ function NewChallengeForm() {
             </> : ''}
 
         </form>
+        <button onClick={() => history.push('/challenges')}>Cancel</button>
     </div>;
 }
 

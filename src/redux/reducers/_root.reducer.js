@@ -4,6 +4,7 @@ import user from './user.reducer';
 import feedback from './feedback.reducer';
 import ciphers from './ciphers.reducer';
 import challenges from './challenges.reducer';
+import attempts from './attempts.reducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   feedback,
   ciphers,
   challenges,
+  attempts,
 });
 
 export default rootReducer;
