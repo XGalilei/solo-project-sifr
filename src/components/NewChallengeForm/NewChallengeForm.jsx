@@ -4,8 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 
 function NewChallengeForm () {
 
+    const emptyCipher = {
+        id: 0,
+        type_code: 0,
+        name: '',
+
+    }
     const [title, setTitle] = useState('');
-    const [cipher, setCipher] = useState({});
+    const [cipher, setCipher] = useState(emptyCipher);
 
     const ciphers = useSelector(store => store.ciphers.allCiphers);
     const dispatch = useDispatch();
@@ -15,7 +21,8 @@ function NewChallengeForm () {
     }, []);
 
     const submitChallenge = () => {
-
+        console.log(title);
+        console.log(cipher.name);
     }
 
     return <div>
@@ -35,6 +42,7 @@ function NewChallengeForm () {
                 })}
             </select>
             <input placeholder="plaintext"/>
+            <button>Submit</button>
         </form>
     </div>;
 }

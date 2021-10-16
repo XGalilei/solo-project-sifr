@@ -61,7 +61,11 @@ function encryptCaesar(message, key) {
     const modKey = key.toUpperCase().charCodeAt(0) - ASCII_UPPER_BASE;
     let result = '';
     for(let i = 0; i < arr.length; i++) {
-        let temp = (arr[i] + modKey) % 26;
+        let temp = ((arr[i] + modKey) % 26) ;
+
+        if(temp === 0) { //edge case for 'Z'
+            temp = 26;
+        }
         result += String.fromCharCode(temp + ASCII_UPPER_BASE - 1);
     }
     return result;
@@ -82,7 +86,7 @@ function decryptCaesar(message, key) {
         let temp = (arr[i] - modKey) % 26;
 
         //used to correct negative modulo values
-        if(temp < 0) {
+        if(temp <= 0) {
             temp += 26;
         }
         result += String.fromCharCode(temp + ASCII_UPPER_BASE - 1);
