@@ -27,6 +27,8 @@ import SubpageHistory from '../SubpageHistory/SubpageHistory';
 import SubpageOverview from '../SubpageOverview/SubpageOverview';
 
 import ChallengeList from '../ChallengeList/ChallengeList';
+import ChallengePage from '../ChallengePage/ChallengePage';
+import NewChallengeForm from '../NewChallengeForm/NewChallengeForm';
 
 import './App.css';
 function App() {
@@ -119,7 +121,11 @@ function App() {
 
           {/* Directs a logged-in user to the challenges page */}
           <Route exact path="/challenges">
-            <ChallengeList/>
+            <ChallengePage/>
+          </Route>
+
+          <Route exact path="/add-challenge">
+            <NewChallengeForm />
           </Route>
 
           <Route 

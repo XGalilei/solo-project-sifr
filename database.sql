@@ -53,6 +53,7 @@ CREATE TABLE "challenges" (
     "encrypted" VARCHAR(500) NOT NULL,
     "decrypted" VARCHAR(500) NOT NULL,
     "key" VARCHAR(500),
+    "title" VARCHAR(500) NOT NULL,
     "cipher_id" INT REFERENCES "ciphers" NOT NULL,
     "creator_id" INT REFERENCES "user" NOT NULL
 );

@@ -3,7 +3,7 @@ import {put, takeLatest} from '@redux-saga/core/effects';
 
 function* challengesSaga() {
     yield takeLatest('FETCH_CHALLENGES', fetchChallenges);
-    yield takeLatest('ADD_CHALLENGE', fetchChallenges);
+    yield takeLatest('ADD_CHALLENGE', addChallenge);
 }
 
 function* fetchChallenges() {

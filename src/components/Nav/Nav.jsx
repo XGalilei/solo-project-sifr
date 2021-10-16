@@ -33,16 +33,18 @@ function Nav() {
 
         <div className="dropdown">
           Ciphers
+          <br/>
           {ciphers.map(cipher => {
             console.log(cipher);
             return (
-              <div className="dropdown-content">
-                  <Link 
+              <div >
+                  <Link className="dropdown-content"
                   key={cipher.id}
                   to={`/cipher/${cipher.id}`} 
                   >
                     {cipher.name}
                 </Link>
+                <br/>
                 </div>
             );
           })}

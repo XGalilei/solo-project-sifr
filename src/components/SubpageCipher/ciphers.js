@@ -104,18 +104,28 @@ function decryptVigenere(message, key) {
 function encodeMorse(message) {
     let result = [];
     for(let i = 0; i < message.length; i++) {
-        const value = message.charCodeAt(i) - ASCII_UPPER_BASE;
+        const value = message[i].toUpperCase().charCodeAt(0) - ASCII_UPPER_BASE;
         result.push(morse_code[value]);
     }
-    let fullResult = result[0];
-    for(let i = 1; i < result.length; i++) {
-        fullResult.append('...' + result[i]);
+    let fullResult = '';
+    console.log(result);
+    for(let i = 0; i < result.length; i++) {
+        if( i === 0) {
+         fullResult += result[i];   
+        }
+        else {
+            fullResult += ('...' + result[i]);
+        }
     }
-    return result;
+    return fullResult;
 
 }
 
 function decodeMorse(message) {
     let arr = message.split('...');
+    let result = '';
+    for (let val of arr) {
+        result += String.fromCharCode(morse_code.indexOf(val) + ASCII_UPPER_BASE);
+    }
     return result;
 }
