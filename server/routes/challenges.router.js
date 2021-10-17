@@ -6,7 +6,7 @@ const {
 } = require('../modules/authentication-middleware');
 
 /**
- * GET route template
+ * GET route: used to gather all challenges
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText = 'SELECT * FROM "challenges";';
@@ -17,6 +17,11 @@ router.get('/', rejectUnauthenticated, (req, res) => {
     res.sendStatus(500);
   })
 });
+
+/**
+ * GET route: used to get specific values pertaining to the challenges,
+ * such as the number of attempts, the creator's username
+ */
 
 /**
  * POST route template
