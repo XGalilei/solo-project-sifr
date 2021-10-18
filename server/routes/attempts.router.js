@@ -13,6 +13,12 @@ router.get('/challenge-total/:id', (req, res) => {
   // GET route code here
   const queryText = `SELECT * FROM "attempts" 
   WHERE "challenge_id" = $1;`;
+  pool.query(queryText, [req.params.id]).then(result => {
+    res.send(result.rows);
+  }).catch(error => {
+    res.sendStatus(500);
+    console.log('Error in /GET challenge-total', error);
+  })
 });
 
 /**
@@ -22,6 +28,12 @@ router.get('/challenge-total/:id', (req, res) => {
 router.get('/challenge-success/:id', (req, res) => {
   const queryText = `SELECT * FROM "attempts"
   WHERE "challenge_id" = $1 AND "success" = true;`;
+  pool.query(queryText, [req.params.id]).then(result => {
+    res.send(result.rows);
+  }).catch(error => {
+    res.sendStatus(500);
+    console.log('Eror in /GET challenge-success', error);
+  })
 });
 
 /**
