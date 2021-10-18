@@ -29,8 +29,13 @@ function* addChallenge(action) {
     }
 }
 
-function* fetchAttemptedChallenges() {
-
+function* fetchAttemptedChallenges(action) {
+    try {
+        
+    }
+    catch(error) {
+        
+    }
 }
 
 function* editChallenge(action) {

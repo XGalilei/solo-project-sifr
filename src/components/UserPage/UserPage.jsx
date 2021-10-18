@@ -4,6 +4,7 @@ import {useSelector} from 'react-redux';
 import DeleteUserButton from '../DeleteUserButton/DeleteUserButton';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import CreatedChallengeItem from '../CreatedChallengeItem/CreatedChallengeItem';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
@@ -26,7 +27,10 @@ function UserPage() {
     <div className="container">
       <h2>Your Created Challenges:</h2>
       {challenges.map(challenge => {
-        return <p>{challenge.title}</p>;
+        return <CreatedChallengeItem 
+        key={challenge.id}
+        challenge={challenge}
+        />
       })}
     </div>
     <div className="container">

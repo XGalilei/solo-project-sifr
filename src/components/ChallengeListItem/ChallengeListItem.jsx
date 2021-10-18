@@ -5,11 +5,13 @@ function ChallengeListItem(props) {
     const user = useSelector(store => store.user);
     const attempts = useSelector(store => store.attempts.allAttempts);
     const successes = useSelector(store => store.attempts.successes);
+    const cipher = useSelector(store => store.ciphers.singleCipher);
     const dispatch = useDispatch();
 
     useEffect(() => {
         dispatch({type: 'FETCH_CHALLENGE_ATTEMPTS', payload: props.challenge.id});
         dispatch({type: 'FETCH_CHALLENGE_SUCCESS', payload: props.challenge.id});
+        dispatch({type: 'FETCH_SINGLE_CIPHER', payload: props.challenge.cipher_id})
     }, []);
 
     const handleAttempt = () => {
@@ -18,7 +20,7 @@ function ChallengeListItem(props) {
 
     return <div>
         <h4>{props.challenge.title}</h4>
-        <p>Cipher Type: {props.challenge.cipher_id}</p>
+        <p>Cipher Type: {cipher.name}</p>
         <p>Created by: {props.challenge.creator_id}</p>
         <p>Success Rate: {successes.length} / {attempts.length} </p>
         <p>{props.challenge.encrypted}</p>
