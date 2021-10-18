@@ -18,7 +18,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   })
 });
 
-router.get('/:id', rejectUnauthenticated, (req, res) => {
+router.get('/single/:id', rejectUnauthenticated, (req, res) => {
   const queryText = `SELECT * FROM "challenges" WHERE "id" = $1;`;
   pool.query(queryText, [req.params.id]).then(result => {
     res.send(result.rows[0]);
@@ -31,10 +31,11 @@ router.get('/:id', rejectUnauthenticated, (req, res) => {
 /**
  * GET the challenges created by a specific user
  */
-router.get('/user-created', rejectUnauthenticated, (req, res) => {
+router.get('/user-created/:id', rejectUnauthenticated, (req, res) => {
   const queryText = `SELECT * FROM "challenges" 
   WHERE "creator_id" = $1;`;
-  pool.query(queryText, [req.user.id]).then((result) => {
+  console.log(req.params);
+  pool.query(queryText, [req.params.id]).then((result) => {
     res.send(result.rows);
   }).catch(error => {
     console.log('Error in /GET user-created challenges', error);

@@ -8,6 +8,7 @@ function* challengesSaga() {
     yield takeLatest('FETCH_ATTEMPTED_CHALLENGES', fetchAttemptedChallenges);
     yield takeLatest('FETCH_CREATED_CHALLENGES', fetchCreatedChallenges);
     yield takeLatest('EDIT_CHALLENGE', editChallenge);
+    yield takeLatest('DELETE_CHALLENGE', deleteChallenge);
 }
 
 function* fetchChallenges() {
@@ -50,10 +51,10 @@ function* editChallenge(action) {
     }
 }
 
-function* fetchCreatedChallenges() {
+function* fetchCreatedChallenges(action) {
     try {
-    const response = yield axios.get('api/challenges/user-created');
-    yield put({type: 'SET_CHALLENGES', payload: response.data});
+    const response = yield axios.get(`api/challenges/user-created/${action.payload.id}`);
+    yield put({type: 'SET_USER_CHALLENGES', payload: response.data});
     }
     catch(error) {
         console.log('Error in getting user-created challenges:', error);
@@ -62,11 +63,20 @@ function* fetchCreatedChallenges() {
 
 function* fetchSingleChallenge(action) {
     try {
-        const response = yield axios.get(`api/challenges/${action.payload.id}`);
+        const response = yield axios.get(`api/challenges/single/${action.payload.id}`);
         yield put({type: 'SET_SINGLE_CHALLENGE', payload: response.data});
     }
     catch(error) {
         console.log('Error in getting single challenge', error);
+    }
+}
+
+function* deleteChallenge(action) {
+    try {
+
+    }
+    catch(error) {
+
     }
 }
 

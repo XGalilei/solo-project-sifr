@@ -37,7 +37,7 @@ function Nav() {
           {ciphers.map(cipher => {
             console.log(cipher);
             return (
-              <div >
+              <div key={cipher.id}>
                   <Link className="dropdown-content"
                   key={cipher.id}
                   to={`/cipher/${cipher.id}`} 

@@ -10,10 +10,11 @@ function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
   const challenges = useSelector((store) => store.challenges.challenges);
+  const createdChallenges = useSelector((store) => store.challenges.userChallenges)
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({type: 'FETCH_CREATED_CHALLENGES'})
+    dispatch({type: 'FETCH_CREATED_CHALLENGES', payload: {id: user.id}  });
   }, []);
 
   return (
@@ -26,7 +27,7 @@ function UserPage() {
     </div>
     <div className="container">
       <h2>Your Created Challenges:</h2>
-      {challenges.map(challenge => {
+      {createdChallenges.map(challenge => {
         return <CreatedChallengeItem 
         key={challenge.id}
         challenge={challenge}

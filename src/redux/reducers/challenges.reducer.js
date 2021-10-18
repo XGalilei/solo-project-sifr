@@ -18,7 +18,27 @@ const singleChallenge = (state = {}, action) => {
     }
 }
 
+const userChallenges = (state = [], action) => {
+    switch(action.type) {
+        case 'SET_USER_CHALLENGES':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+const attemptedChallenges = (state = [], action) => {
+    switch (action.type) {
+        case 'SET_ATTEMPTED_CHALLENGES':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 export default combineReducers({
     challenges,
-    singleChallenge
+    singleChallenge,
+    userChallenges,
+    attemptedChallenges
 });
