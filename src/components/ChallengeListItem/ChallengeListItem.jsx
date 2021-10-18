@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router";
 function ChallengeListItem(props) {
 
     const user = useSelector(store => store.user);
@@ -7,6 +8,7 @@ function ChallengeListItem(props) {
     const successes = useSelector(store => store.attempts.successes);
     const cipher = useSelector(store => store.ciphers.singleCipher);
     const dispatch = useDispatch();
+    const history = useHistory();
 
     useEffect(() => {
         dispatch({type: 'FETCH_CHALLENGE_ATTEMPTS', payload: props.challenge.id});
@@ -16,6 +18,8 @@ function ChallengeListItem(props) {
 
     const handleAttempt = () => {
         console.log('attempting');
+        //dispatch({type: 'FETCH_A_CHALLENGE', payload: {id: props.challenge.id}})
+        history.push(`attempt-challenge/${props.challenge.id}`)
     }
 
     return <div>

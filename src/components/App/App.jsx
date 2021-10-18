@@ -32,6 +32,7 @@ import NewChallengeForm from '../NewChallengeForm/NewChallengeForm';
 
 import './App.css';
 import EditChallenge from '../EditChallenge/EditChallenge';
+import AttemptChallengeForm from '../AttemptChallengeForm/AttemptChallengeForm';
 function App() {
   const dispatch = useDispatch();
 
@@ -139,6 +140,11 @@ function App() {
           <Route 
           exact path="/edit-challenge/:id" 
           component={EditChallenge}
+          />
+
+          <Route
+          exact path="/attempt-challenge/:id"
+          component={AttemptChallengeForm}
           />
 
           <Route
