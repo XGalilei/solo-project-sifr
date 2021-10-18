@@ -12,13 +12,16 @@ function CreatedChallengeItem(props) {
     const cipher = useSelector(store => store.ciphers.singleCipher);
 
     useEffect(() => {
-        dispatch({type: 'FETCH_CHALLENGE_ATTEMPTS', payload: props.challenge.id});
-        dispatch({type: 'FETCH_CHALLENGE_SUCCESS', payload: props.challenge.id});
+        dispatch({type: 'FETCH_CHALLENGE_ATTEMPTS', payload: props.key});
+        dispatch({type: 'FETCH_CHALLENGE_SUCCESS', payload: props.key});
         dispatch({type: 'FETCH_SINGLE_CIPHER', payload: props.challenge.cipher_id})
     }, []);
 
     const edit = () => {
-        history.push('/edit-challenge');
+        const idObject = {id: props.challenge.id};
+        console.log(props.challenge.id);
+        dispatch({type: 'FETCH_A_CHALLENGE', payload: idObject});
+        history.push(`/edit-challenge/${props.challenge.id}`);
     }
 
     const deleteChallenge = () => {

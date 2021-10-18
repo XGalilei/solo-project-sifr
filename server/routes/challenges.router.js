@@ -18,6 +18,16 @@ router.get('/', rejectUnauthenticated, (req, res) => {
   })
 });
 
+router.get('/:id', rejectUnauthenticated, (req, res) => {
+  const queryText = `SELECT * FROM "challenges" WHERE "id" = $1;`;
+  pool.query(queryText, [req.params.id]).then(result => {
+    res.send(result.rows[0]);
+  }).catch(error => {
+    console.log('Error in /GET single challenge', error);
+    res.sendStatus(500);
+  })
+})
+
 /**
  * GET the challenges created by a specific user
  */
@@ -55,16 +65,16 @@ router.post('/', rejectUnauthenticated, (req, res) => {
   })
 });
 
-router.put('/', rejectUnauthenticated, (req, res) => {
+router.put('/:id', rejectUnauthenticated, (req, res) => {
   const queryText = `UPDATE "challenges" SET
-  "title" = $1, "encrypted" = $2, "decrypted" = $3, "key" = $4, "title" = $5
-  WHERE "id" = $6;`;
+  "title" = $1, "encrypted" = $2, "decrypted" = $3, "key" = $4
+  WHERE "id" = $5;`;
   const newPlaintext = req.body.decrypted;
   const newCiphertext = req.body.encrypted;
   const newKey = req.body.key;
   const newTitle = req.body.title;
   const challengeId = req.body.id;
-  pool.query(queryText, [newTitle, newCiphertext, newPlaintext, newKey, newTitle, challengeId])
+  pool.query(queryText, [newTitle, newCiphertext, newPlaintext, newKey, challengeId])
   .then(result => {
     res.sendStatus(200);
   }).catch(error => {

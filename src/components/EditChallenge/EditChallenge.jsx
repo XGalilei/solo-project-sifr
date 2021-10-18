@@ -1,28 +1,31 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useSelector } from 'react-redux';
+import { useHistory } from 'react-router';
 import {encrypt} from '../SubpageCipher/ciphers';
 
 // Basic functional component structure for React with default state
 // value setup. When making a new component be sure to replace the
 // component name TemplateFunction with the name for the new component.
 function EditChallenge(props) {
-    // Using hooks we're creating local state for a "heading" variable with
-    // a default value of 'Functional Component'
-    const store = useSelector((store) => store);
-    const [plaintext, setPlaintext] = useState(props.challenge.decrypted);
-    const [title, setTitle] = useState(props.challenge.title);
-    const [key, setKey] = useState(props.challenge.key);
+
+    const challenge = useSelector(store => store.challenges.singleChallenge);
+    const [plaintext, setPlaintext] = useState(challenge.decrypted);
+    const [title, setTitle] = useState(challenge.title);
+    const [key, setKey] = useState(challenge.key);
     const dispatch = useDispatch();
+    const history = useHistory();
+
 
     const submitChanges = () => {
         const updatedChallenge = {
             decrypted: plaintext,
-            encrypted: encrypt(plaintext, key, props.challenge.cipher_id),
+            encrypted: encrypt(plaintext, key, challenge.cipher_id),
             key: key,
             title: title,
-            id: props.challenge.id
+            id: challenge.id
         }
+        console.log(updatedChallenge)
         dispatch({type: 'EDIT_CHALLENGE', payload: updatedChallenge});
         console.log('Challenge editing complete');
         history.push('/user');
@@ -34,7 +37,7 @@ function EditChallenge(props) {
 
     return (
         <div>
-            <form onSubmit={() => submitChanges}>
+            <form>
                 <input
                 value={title}
                 onChange={event => setTitle(event.target.value)}
@@ -43,7 +46,7 @@ function EditChallenge(props) {
                 value={plaintext} 
                 onChange={(event) => setPlaintext(event.target.value)}
                 />
-                {props.challenge.cipher_id === 2 ?
+                {challenge.cipher_id === 2 ?
                 <input
                 value={key}
                 onChange={event => setKey(event.target.value)}
@@ -51,7 +54,7 @@ function EditChallenge(props) {
                 :
                 ''
                 }
-
+                <button onClick={submitChanges}>Submit</button>
             </form>
             <button onClick={() => cancelChanges}>Cancel</button>
         </div>

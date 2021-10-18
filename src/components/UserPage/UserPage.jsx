@@ -9,7 +9,7 @@ import CreatedChallengeItem from '../CreatedChallengeItem/CreatedChallengeItem';
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
-  const challenges = useSelector((store) => store.challenges);
+  const challenges = useSelector((store) => store.challenges.challenges);
   const dispatch = useDispatch();
 
   useEffect(() => {

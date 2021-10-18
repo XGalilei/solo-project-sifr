@@ -137,7 +137,7 @@ function App() {
           </Route>
 
           <Route 
-          exact path="/edit-challenge" 
+          exact path="/edit-challenge/:id" 
           component={EditChallenge}
           />
 

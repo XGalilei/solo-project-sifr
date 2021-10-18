@@ -9,7 +9,7 @@ import ChallengeListItem from '../ChallengeListItem/ChallengeListItem';
 function ChallengeList() {
 
     const dispatch = useDispatch();
-    const challenges = useSelector(store => store.challenges);
+    const challenges = useSelector(store => store.challenges.challenges);
 
     useEffect(() => {
         dispatch({type: 'FETCH_CHALLENGES'});

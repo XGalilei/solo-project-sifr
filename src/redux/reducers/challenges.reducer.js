@@ -1,4 +1,6 @@
-const challengesReducer = (state = [], action) => {
+import { combineReducers } from "redux";
+
+const challenges = (state = [], action) => {
     switch(action.type) {
         case 'SET_CHALLENGES':
             return action.payload;
@@ -7,4 +9,16 @@ const challengesReducer = (state = [], action) => {
     }
 };
 
-export default challengesReducer;
+const singleChallenge = (state = {}, action) => {
+    switch(action.type) {
+        case 'SET_SINGLE_CHALLENGE':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+export default combineReducers({
+    challenges,
+    singleChallenge
+});
