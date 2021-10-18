@@ -18,7 +18,9 @@ function ChallengeList() {
     return <div>
         <h2>Under Construction...</h2>
         {challenges.map(challenge => {
-            return <ChallengeListItem challenge={challenge}/>;
+            return <ChallengeListItem
+            key={challenge.id}
+            challenge={challenge}/>;
         })
         }
     </div>;

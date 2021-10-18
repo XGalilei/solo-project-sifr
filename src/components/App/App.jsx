@@ -31,6 +31,7 @@ import ChallengePage from '../ChallengePage/ChallengePage';
 import NewChallengeForm from '../NewChallengeForm/NewChallengeForm';
 
 import './App.css';
+import EditChallenge from '../EditChallenge/EditChallenge';
 function App() {
   const dispatch = useDispatch();
 
@@ -134,6 +135,11 @@ function App() {
               : <p>Only registered users can add new challenges</p>
             }
           </Route>
+
+          <Route 
+          exact path="/edit-challenge" 
+          component={EditChallenge}
+          />
 
           <Route
             exact path="/cipher/:id"

@@ -35,7 +35,7 @@ router.get('/user/:id', (req, res) => {
 /**
  * POST route template
  */
-router.post('/:id', (req, res) => {
+router.post('/', (req, res) => {
   // POST route code here
   const queryText = `INSERT INTO "attempts" ("success", "user_id", "challenge_id")
   VALUES ($1, $2, $3);`;
@@ -47,6 +47,18 @@ router.post('/:id', (req, res) => {
     res.sendStatus(200);
   }).catch(error => {
     console.log('Error in /POST attempt:', error);
+    res.sendStatus(500);
+  })
+});
+
+
+router.delete('/', (req, res) => {
+  const queryText = `DELETE FROM "attempts" WHERE "challenge_id" = $1;`;
+  const challengeId = req.body.challenge_id;
+  pool.query(queryText, [challengeId]).then(result => {
+    res.sendStatus(200);
+  }).catch(error => {
+    console.log('Error in /DELETE attempts:', error);
     res.sendStatus(500);
   })
 });

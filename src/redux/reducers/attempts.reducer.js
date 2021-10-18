@@ -1,4 +1,6 @@
-const attemptsReducer = (state = [], action) => {
+import { combineReducers } from "redux";
+
+const allAttempts = (state = [], action) => {
     switch(action.type) {
         case 'SET_ATTEMPTS':
             return action.payload;
@@ -7,4 +9,16 @@ const attemptsReducer = (state = [], action) => {
     }
 }
 
-export default attemptsReducer;
+const successes = (state = [], action) => {
+    switch(action.type) {
+        case 'SET_ATTEMPT_SUCCESS':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+export default combineReducers({
+    allAttempts,
+    successes
+});
