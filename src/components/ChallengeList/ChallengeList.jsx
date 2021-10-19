@@ -18,6 +18,7 @@ function ChallengeList() {
     return <div>
         <h2>Under Construction...</h2>
         {challenges.map(challenge => {
+            console.log(challenge);
             return <ChallengeListItem
             key={challenge.id}
             challenge={challenge}/>;

@@ -30,7 +30,7 @@ function ChallengeListItem({challenge}) {
 
         <button
         disabled={challenge.creator_id === user.id}
-        onClick={() => handleAttempt}
+        onClick={handleAttempt}
         >Attempt Challenge</button>
     </div>;
 }

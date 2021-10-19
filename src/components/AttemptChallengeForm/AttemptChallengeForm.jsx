@@ -6,13 +6,13 @@ function AttemptChallengeForm(props) {
 
     const dispatch = useDispatch();
     const challenge = useSelector(store => store.challenges.singleChallenge);
-    const cipher = useSelector(store => store.ciphers.singleCipher);
+    //const cipher = useSelector(store => store.ciphers.singleCipher);
     const [answer, setAnswer] = useState('');
 
     useEffect(() => {
         console.log(props.match.params.id);
         dispatch({type: 'FETCH_A_CHALLENGE', payload: {id: props.match.params.id}});
-        dispatch({type: 'FETCH_SINGLE_CIPHER', payload: challenge.cipher_id})
+        //dispatch({type: 'FETCH_SINGLE_CIPHER', payload: challenge.cipher_id})
         console.log(challenge);
     }, []);
 
@@ -29,9 +29,9 @@ function AttemptChallengeForm(props) {
 
     return <div>
         <p>{challenge.title}</p>
-        <p>{cipher.name}</p>
+        <p>{challenge.name}</p>
         <p>{challenge.encrypted}</p>
-        {cipher.type_code === 1 ? 
+        {challenge.type_code === 1 ? 
         <p>Key: {challenge.key}</p> 
         : ''
         }
