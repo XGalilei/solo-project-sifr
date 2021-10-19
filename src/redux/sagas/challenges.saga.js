@@ -5,7 +5,7 @@ function* challengesSaga() {
     yield takeEvery('FETCH_CHALLENGES', fetchChallenges);
     yield takeEvery('FETCH_A_CHALLENGE', fetchSingleChallenge);
     yield takeEvery('ADD_CHALLENGE', addChallenge);
-    //yield takeEvery('FETCH_ATTEMPTED_CHALLENGES', fetchAttemptedChallenges);
+    yield takeEvery('FETCH_ATTEMPTED_CHALLENGES', fetchAttemptedChallenges);
     yield takeEvery('FETCH_CREATED_CHALLENGES', fetchCreatedChallenges);
     yield takeEvery('EDIT_CHALLENGE', editChallenge);
     //yield takeEvery('DELETE_CHALLENGE', deleteChallenge);
@@ -31,14 +31,14 @@ function* addChallenge(action) {
     }
 }
 
-//function* fetchAttemptedChallenges(action) {
-//    try {
-//        
-//    }
-//    catch(error) {
-//
-//    }
-//}
+function* fetchAttemptedChallenges(action) {
+    try {
+        
+    }
+    catch(error) {
+
+    }
+}
 
 function* editChallenge(action) {
     try {
