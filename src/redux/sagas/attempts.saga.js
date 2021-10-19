@@ -11,8 +11,8 @@ function* attemptsSaga() {
 
 function* makeAttempt(action) {
     yield axios.post(`/api/attempts/`, action.payload);
-    yield put({type: 'FETCH_CHALLENGE_ATTEMPTS'});
-    yield put({type: 'FETCH_CHALLENGE_SUCCESS'});
+    yield put({type: 'FETCH_CHALLENGE_ATTEMPTS', payload: {id: action.payload.challenge}});
+    yield put({type: 'FETCH_CHALLENGE_SUCCESS', payload: {id: action.payload.challenge}});
 }
 
 function* fetchChallengeAttempts(action) {

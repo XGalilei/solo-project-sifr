@@ -33,10 +33,11 @@ function* addChallenge(action) {
 
 function* fetchAttemptedChallenges(action) {
     try {
-        
+        const response = yield axios.get(`/api/challenges/user-attempted/${action.payload.id}`);
+        yield put({type: 'SET_ATTEMPTED_CHALLENGES', payload: response.data});
     }
     catch(error) {
-
+        console.error('Error in getting user-attempted challenges:', error);
     }
 }
 

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import {useHistory} from "react-router-dom";
 
 function AttemptChallengeForm(props) {
 
@@ -8,6 +8,7 @@ function AttemptChallengeForm(props) {
     const challenge = useSelector(store => store.challenges.singleChallenge);
     //const cipher = useSelector(store => store.ciphers.singleCipher);
     const [answer, setAnswer] = useState('');
+    const history = useHistory();
 
     useEffect(() => {
         console.log(props.match.params.id);
@@ -22,9 +23,9 @@ function AttemptChallengeForm(props) {
             challenge: challenge.id,
             success: result
         };
-        console.log(result);
-        console.log(answer);
+        console.log(result ? `Congratulations, that's correct!` : `Sorry, you're wrong`);
         dispatch({type: 'MAKE_ATTEMPT', payload: attemptObject});
+        history.push('/challenges')
     }
 
     return <div>
