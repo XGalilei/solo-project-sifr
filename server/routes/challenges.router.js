@@ -10,7 +10,12 @@ const {
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText = 'SELECT * FROM "challenges";';
+  //const queryText = `SELECT ("challenges"."id", "encrypted", "decrypted", "title", "name", "key", "type_code", "username") 
+  //FROM "challenges" JOIN "user" ON "challenges"."creator_id" = "user"."id"
+  //JOIN "ciphers" ON "challenges"."cipher_id" = "ciphers"."id";`;
   pool.query(queryText).then((result) => {
+    //console.log(result);
+    //console.log(result.rows[0].row.split(','));
     res.send(result.rows);
   }).catch(error => {
     console.log('Error in /GET challenges', error);
@@ -20,6 +25,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 router.get('/single/:id', rejectUnauthenticated, (req, res) => {
   const queryText = `SELECT * FROM "challenges" WHERE "id" = $1;`;
+  console.log('Testing single challenge:', req.params.id);
   pool.query(queryText, [req.params.id]).then(result => {
     res.send(result.rows[0]);
   }).catch(error => {
@@ -34,7 +40,6 @@ router.get('/single/:id', rejectUnauthenticated, (req, res) => {
 router.get('/user-created/:id', rejectUnauthenticated, (req, res) => {
   const queryText = `SELECT * FROM "challenges" 
   WHERE "creator_id" = $1;`;
-  console.log(req.params);
   pool.query(queryText, [req.params.id]).then((result) => {
     res.send(result.rows);
   }).catch(error => {

@@ -1,4 +1,4 @@
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 import ChallengeList from "../ChallengeList/ChallengeList";
 
 function ChallengePage() {

@@ -1,14 +1,14 @@
 import axios from "axios";
-import {put, takeLatest} from '@redux-saga/core/effects';
+import {put, takeEvery} from '@redux-saga/core/effects';
 
 function* challengesSaga() {
-    yield takeLatest('FETCH_CHALLENGES', fetchChallenges);
-    yield takeLatest('FETCH_A_CHALLENGE', fetchSingleChallenge);
-    yield takeLatest('ADD_CHALLENGE', addChallenge);
-    yield takeLatest('FETCH_ATTEMPTED_CHALLENGES', fetchAttemptedChallenges);
-    yield takeLatest('FETCH_CREATED_CHALLENGES', fetchCreatedChallenges);
-    yield takeLatest('EDIT_CHALLENGE', editChallenge);
-    yield takeLatest('DELETE_CHALLENGE', deleteChallenge);
+    yield takeEvery('FETCH_CHALLENGES', fetchChallenges);
+    yield takeEvery('FETCH_A_CHALLENGE', fetchSingleChallenge);
+    yield takeEvery('ADD_CHALLENGE', addChallenge);
+    //yield takeEvery('FETCH_ATTEMPTED_CHALLENGES', fetchAttemptedChallenges);
+    yield takeEvery('FETCH_CREATED_CHALLENGES', fetchCreatedChallenges);
+    yield takeEvery('EDIT_CHALLENGE', editChallenge);
+    //yield takeEvery('DELETE_CHALLENGE', deleteChallenge);
 }
 
 function* fetchChallenges() {
@@ -31,20 +31,21 @@ function* addChallenge(action) {
     }
 }
 
-function* fetchAttemptedChallenges(action) {
-    try {
-        
-    }
-    catch(error) {
-
-    }
-}
+//function* fetchAttemptedChallenges(action) {
+//    try {
+//        
+//    }
+//    catch(error) {
+//
+//    }
+//}
 
 function* editChallenge(action) {
     try {
-        yield axios.put(`/api/challenges/${action.payload.id}`, action.payload);
+        const id = action.payload.id;
+        yield axios.put(`/api/challenges/${id}`, action.payload);
         yield put({type: 'FETCH_CHALLENGES'});
-        yield put({type: 'FETCH_A_CHALLENGE', payload: action.payload.id});
+        yield put({type: 'FETCH_A_CHALLENGE', payload: {id: id}});
     }
     catch(error) {
         console.log('Error in editing challenge:', error);
@@ -71,13 +72,13 @@ function* fetchSingleChallenge(action) {
     }
 }
 
-function* deleteChallenge(action) {
-    try {
-
-    }
-    catch(error) {
-
-    }
-}
+//function* deleteChallenge(action) {
+//    try {
+//
+//    }
+//    catch(error) {
+//
+//    }
+//}
 
 export default challengesSaga;

@@ -9,7 +9,7 @@ const router = express.Router();
  * GET the number of attempts for the challenge with the
  * specified ID
  */
-router.get('/challenge-total/:id', (req, res) => {
+router.get('/total/:id', rejectUnauthenticated, (req, res) => {
   // GET route code here
   const queryText = `SELECT * FROM "attempts" 
   WHERE "challenge_id" = $1;`;
@@ -25,22 +25,23 @@ router.get('/challenge-total/:id', (req, res) => {
  * GET the number of successful attempts for the challenge
  * with the specificied ID
  */
-router.get('/challenge-success/:id', (req, res) => {
-  const queryText = `SELECT * FROM "attempts"
-  WHERE "challenge_id" = $1 AND "success" = true;`;
+router.get('/success/:id', rejectUnauthenticated, (req, res) => {
+  const queryText = `SELECT COUNT("success" = true) FROM "attempts"
+  WHERE "challenge_id" = $1;`;
   pool.query(queryText, [req.params.id]).then(result => {
-    res.send(result.rows);
+    res.send(result.rows[0]);
   }).catch(error => {
     res.sendStatus(500);
-    console.log('Eror in /GET challenge-success', error);
+    console.log('Eror in /GET success', error);
   })
 });
 
 /**
- * GET route template
+ * GET the attempts performed on a challenge by a specific user
  */
 router.get('/user/:id', (req, res) => {
   // GET route code here
+  const queryText = `SELECT DISTINCT("challenge_id") FROM "attempts" WHERE "user_id" = $1;`;
 });
 
 

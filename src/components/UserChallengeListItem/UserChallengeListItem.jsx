@@ -1,20 +1,20 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { useHistory } from "react-router-dom";
 
-function CreatedChallengeItem(props) {
+function UserChallengeListItem(props) {
 
     const history = useHistory();
     const dispatch = useDispatch();
-    const attempts = useSelector(store => store.attempts.allAttempts);
-    const successes = useSelector(store => store.attempts.successes);
+    //const attempts = useSelector(store => store.attempts.allAttempts);
+    //const successes = useSelector(store => store.attempts.successes);
 
     const cipher = useSelector(store => store.ciphers.singleCipher);
 
     useEffect(() => {
-        dispatch({type: 'FETCH_CHALLENGE_ATTEMPTS', payload: props.key});
-        dispatch({type: 'FETCH_CHALLENGE_SUCCESS', payload: props.key});
-        dispatch({type: 'FETCH_SINGLE_CIPHER', payload: props.challenge.cipher_id})
+        //dispatch({type: 'FETCH_CHALLENGE_ATTEMPTS', payload: props.key});
+        //dispatch({type: 'FETCH_CHALLENGE_SUCCESS', payload: props.key});
+        //dispatch({type: 'FETCH_SINGLE_CIPHER', payload: props.challenge.cipher_id})
     }, []);
 
     const edit = () => {
@@ -30,8 +30,8 @@ function CreatedChallengeItem(props) {
 
     return <div>
         <p>{props.challenge.title}</p>
-        <p>{cipher.name}</p>
-        <p>Success: {successes.length} / {attempts.length}</p>
+        <p>Cipher Type: {props.challenge.cipher_id}</p>
+        {/*<p>Success: {successes.count} / {attempts.length}</p>*/}
         <p>Plaintext: {props.challenge.decrypted}</p>
         <p>Ciphertext: {props.challenge.encrypted}</p>
         {cipher.type_code === 1 ?
@@ -42,4 +42,4 @@ function CreatedChallengeItem(props) {
     </div>;
 }
 
-export default CreatedChallengeItem;
+export default UserChallengeListItem;

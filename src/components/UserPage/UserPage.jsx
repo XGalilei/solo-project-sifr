@@ -1,15 +1,13 @@
 import React from 'react';
 import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector} from 'react-redux';
+import {useSelector, useDispatch} from 'react-redux';
 import DeleteUserButton from '../DeleteUserButton/DeleteUserButton';
-import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
-import CreatedChallengeItem from '../CreatedChallengeItem/CreatedChallengeItem';
+import UserChallengeList from '../UserChallengeList/UserChallengeList';
 
 function UserPage() {
   // this component doesn't do much to start, just renders some user reducer info to the DOM
   const user = useSelector((store) => store.user);
-  const challenges = useSelector((store) => store.challenges.challenges);
   const createdChallenges = useSelector((store) => store.challenges.userChallenges)
   const dispatch = useDispatch();
 
@@ -26,12 +24,14 @@ function UserPage() {
       <LogOutButton className="btn" />
     </div>
     <div className="container">
-      <h2>Your Created Challenges:</h2>
+      
+      <UserChallengeList />
       {createdChallenges.map(challenge => {
-        return <CreatedChallengeItem 
+        {/* return <CreatedChallengeItem 
         key={challenge.id}
         challenge={challenge}
         />
+        */}
       })}
     </div>
     <div className="container">

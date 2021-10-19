@@ -19,6 +19,7 @@ router.get('/', (req, res) => {
 router.get('/:id', (req, res) => {
   const queryText = `SELECT * FROM "ciphers" WHERE "id" = $1;`;
   pool.query(queryText, [req.params.id]).then((result) => {
+    //console.log(result);
     res.send(result.rows[0]);
   }).catch(error => {
     console.log('Error in /GET single cipher', error);

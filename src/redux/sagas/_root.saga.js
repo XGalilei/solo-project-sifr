@@ -22,6 +22,6 @@ export default function* rootSaga() {
     feedbackSaga(),
     ciphersSaga(),
     challengesSaga(),
-    attemptsSaga()
+    attemptsSaga(),
   ]);
 }
