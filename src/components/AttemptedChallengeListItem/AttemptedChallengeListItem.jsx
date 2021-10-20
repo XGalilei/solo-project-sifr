@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from 'react-router-dom';
 
@@ -8,11 +8,15 @@ function AttemptedChallengeListItem({ challenge }) {
     const user = useSelector(store => store.user);
     const attempts = useSelector(store => store.attempts.allAttempts);
     const challengeAttempts = [];
+    let complete = false;
 
 
     for(let attempt of attempts) {
         if(attempt.challenge_id === challenge.id && attempt.user_id === user.id) {
             challengeAttempts.push(attempt);
+            if(attempt.success) {
+                complete = true;
+            }
         }
     }
 
@@ -26,9 +30,13 @@ function AttemptedChallengeListItem({ challenge }) {
         <h4>{challenge.title}</h4>
         <p>Type: {challenge.name}</p>
         <p>Created by: {challenge.username}</p>
-        <p>Status: Incomplete</p>
+        <p>Status: {complete ? 'Complete' : 'Incomplete'}</p>
         <p>You have attempted this challenge {challengeAttempts.length} times</p>
-        <button onClick={attemptChallenge}>Attempt Challenge/Challenge Complete</button>
+        <button
+        disabled={complete} 
+        onClick={attemptChallenge}>
+            {complete ? "Challenge Complete" : "Attempt Challenge"}
+        </button>
     </div>
 }
 

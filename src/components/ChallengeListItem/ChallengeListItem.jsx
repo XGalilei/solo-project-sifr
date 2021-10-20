@@ -9,14 +9,19 @@ function ChallengeListItem({challenge}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const challengeId = challenge.id;
+    const creatorId = challenge.creator_id;
     const challengeAttempts = [];
     const challengeSuccess = [];
+    let complete = false;
 
     for(let attempt of attempts) {
         if (attempt.challenge_id === challengeId) {
             challengeAttempts.push(attempt);
             if(attempt.success) {
                 challengeSuccess.push(attempt);
+                if(attempt.user_id === user.id) {
+                    complete = true;
+                }
             }
         }
     }
@@ -37,9 +42,10 @@ function ChallengeListItem({challenge}) {
         <p>{challenge.encrypted}</p>
 
         <button
-        disabled={challenge.creator_id === user.id}
+        disabled={creatorId === user.id || complete}
         onClick={handleAttempt}
-        >Attempt Challenge</button>
+        > {complete ? "Challenge Complete" : "Attempt Challenge"}
+        </button>
     </div>;
 }
 

@@ -9,11 +9,7 @@ const {
  * GET route: used to gather all challenges
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
-  //const queryText = 'SELECT * FROM "challenges";';
-  //const queryText = `SELECT ("challenges"."id", "encrypted", "decrypted", "title", "name", "key", "type_code", "username") 
-  //FROM "challenges" JOIN "user" ON "challenges"."creator_id" = "user"."id"
-  //JOIN "ciphers" ON "challenges"."cipher_id" = "ciphers"."id";`;
-  const queryText = `SELECT "challenges"."id", "encrypted", "decrypted", "title", "name", "key", "type_code", "username"
+  const queryText = `SELECT "challenges"."id", "encrypted", "decrypted", "title", "name", "key", "type_code", "username", "creator_id"
   FROM "challenges"
   JOIN "user" ON "challenges"."creator_id" = "user"."id"
   JOIN "ciphers" ON "challenges"."cipher_id" = "ciphers"."id"`;

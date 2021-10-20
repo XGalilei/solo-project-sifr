@@ -48,7 +48,9 @@ function NewChallengeForm() {
                 </option>
 
                 {ciphers.map(cipherOp => {
-                    return <option value={cipherOp.id}
+                    return <option
+                    key={cipherOp.id} 
+                    value={cipherOp.id}
                         onClick={() => {
                             setCipher(cipherOp);
                             setSelected(true);
