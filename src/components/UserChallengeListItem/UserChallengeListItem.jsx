@@ -27,6 +27,7 @@ function UserChallengeListItem({challenge}) {
     }
 
     const deleteChallenge = () => {
+        dispatch({type: 'DELETE_CHALLENGE', payload: {id: challenge.id}});
 
     }
 

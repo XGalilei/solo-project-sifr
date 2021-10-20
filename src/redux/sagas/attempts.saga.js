@@ -6,7 +6,7 @@ function* attemptsSaga() {
     yield takeEvery('MAKE_ATTEMPT', makeAttempt);
     yield takeEvery('FETCH_CHALLENGE_SUCCESS', fetchChallengeSuccess);
     //yield takeEvery('FETCH_USER_ATTEMPTS', fetchUserAttempts);
-    //yield takeEvery('DELETE_CHALLENGE_ATTEMPTS', deleteChallengeAttempts);
+    yield takeEvery('DELETE_CHALLENGE_ATTEMPTS', deleteChallengeAttempts);
 }
 
 function* makeAttempt(action) {
@@ -35,8 +35,14 @@ function* fetchChallengeSuccess() {
 //
 //}
 
-//function* deleteChallengeAttempts() {
-//
-//}
+function* deleteChallengeAttempts(action) {
+    try {
+        yield axios.delete(`api/attempts/${action.payload.id}`);
+    }
+    catch(error) {
+        console.log('Error in deleting attempts from challenge', error);
+    }
+
+}
 
 export default attemptsSaga;

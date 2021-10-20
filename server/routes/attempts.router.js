@@ -65,9 +65,9 @@ router.post('/', (req, res) => {
 });
 
 
-router.delete('/', (req, res) => {
+router.delete('/:id', (req, res) => {
   const queryText = `DELETE FROM "attempts" WHERE "challenge_id" = $1;`;
-  const challengeId = req.body.challenge_id;
+  const challengeId = req.params.id;
   pool.query(queryText, [challengeId]).then(result => {
     res.sendStatus(200);
   }).catch(error => {

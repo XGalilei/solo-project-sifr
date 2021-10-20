@@ -8,7 +8,7 @@ function* challengesSaga() {
     yield takeEvery('FETCH_ATTEMPTED_CHALLENGES', fetchAttemptedChallenges);
     yield takeEvery('FETCH_CREATED_CHALLENGES', fetchCreatedChallenges);
     yield takeEvery('EDIT_CHALLENGE', editChallenge);
-    //yield takeEvery('DELETE_CHALLENGE', deleteChallenge);
+    yield takeEvery('DELETE_CHALLENGE', deleteChallenge);
 }
 
 function* fetchChallenges() {
@@ -44,9 +44,11 @@ function* fetchAttemptedChallenges(action) {
 function* editChallenge(action) {
     try {
         const id = action.payload.id;
+        yield put({type: 'DELETE_CHALLENGE_ATTEMPTS', payload: {id: id}});
         yield axios.put(`/api/challenges/${id}`, action.payload);
         yield put({type: 'FETCH_CHALLENGES'});
         yield put({type: 'FETCH_A_CHALLENGE', payload: {id: id}});
+        
     }
     catch(error) {
         console.log('Error in editing challenge:', error);
@@ -73,13 +75,15 @@ function* fetchSingleChallenge(action) {
     }
 }
 
-//function* deleteChallenge(action) {
-//    try {
-//
-//    }
-//    catch(error) {
-//
-//    }
-//}
+function* deleteChallenge(action) {
+    try {
+        yield put({type: 'DELETE_CHALLENGE_ATTEMPTS', payload: {id: action.payload.id}});
+        yield axios.delete(`api/challenges/${action.payload.id}`);
+        yield put({type: 'FETCH_CHALLENGES'});
+    }
+    catch(error) {
+        console.log('Error in deleting challenge', error);
+    }
+}
 
 export default challengesSaga;
