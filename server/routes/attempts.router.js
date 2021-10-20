@@ -9,11 +9,11 @@ const router = express.Router();
  * GET the number of attempts for the challenge with the
  * specified ID
  */
-router.get('/total/:id', rejectUnauthenticated, (req, res) => {
+router.get('/total', rejectUnauthenticated, (req, res) => {
   // GET route code here
-  const queryText = `SELECT * FROM "attempts" 
-  WHERE "challenge_id" = $1;`;
-  pool.query(queryText, [req.params.id]).then(result => {
+  const queryText = `SELECT * FROM "attempts";`;
+  pool.query(queryText).then(result => {
+    //console.log(result.rows);
     res.send(result.rows);
   }).catch(error => {
     res.sendStatus(500);

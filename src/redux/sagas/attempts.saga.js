@@ -11,23 +11,23 @@ function* attemptsSaga() {
 
 function* makeAttempt(action) {
     yield axios.post(`/api/attempts/`, action.payload);
-    yield put({type: 'FETCH_CHALLENGE_ATTEMPTS', payload: {id: action.payload.challenge}});
-    yield put({type: 'FETCH_CHALLENGE_SUCCESS', payload: {id: action.payload.challenge}});
+    yield put({type: 'FETCH_CHALLENGE_ATTEMPTS'});
+    yield put({type: 'FETCH_CHALLENGE_SUCCESS'});
 }
 
-function* fetchChallengeAttempts(action) {
+function* fetchChallengeAttempts() {
     try {
-        const response = yield axios.get(`/api/attempts/total/${action.payload.id}`);
+        const response = yield axios.get(`/api/attempts/total/`);
         yield put({ type: 'SET_ATTEMPTS', payload: response.data });
     }
     catch (error) {
-
+        console.error('Error in getting challenge attempts', error);
     }
 
 }
 
-function* fetchChallengeSuccess(action) {
-    const response = yield axios.get(`api/attempts/success/${action.payload.id}`);
+function* fetchChallengeSuccess() {
+    const response = yield axios.get(`api/attempts/success/`);
     yield put({ type: 'SET_ATTEMPT_SUCCESS', payload: response.data });
 }
 

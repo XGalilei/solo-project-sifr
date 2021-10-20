@@ -1,3 +1,5 @@
+--CREATE DATABASE sifr;
+
 
 -- USER is a reserved keyword with Postgres
 -- You must use double quotes in every query that user is in:

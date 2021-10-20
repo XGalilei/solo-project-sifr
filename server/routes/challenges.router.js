@@ -58,9 +58,11 @@ router.get('/user-created/:id', rejectUnauthenticated, (req, res) => {
 })
 
 router.get('/user-attempted/:id', rejectUnauthenticated, (req, res) => {
-  const queryText = `SELECT * FROM "challenges" WHERE EXISTS
-  (SELECT DISTINCT("challenge_id") FROM "attempts"
-   WHERE "challenges"."id" = "challenge_id" AND "attempts"."user_id" = $1);`;
+  const queryText = `SELECT "challenges"."id", "encrypted", "title", "name", "type_code", "username"
+  FROM "challenges" JOIN "user" ON "challenges"."creator_id" = "user"."id"
+  JOIN "ciphers" ON "challenges"."cipher_id" = "ciphers"."id"
+  WHERE EXISTS (SELECT DISTINCT("challenge_id") FROM "attempts" 
+  WHERE "challenges"."id" = "challenge_id" AND "attempts"."user_id" = $1);`;
    pool.query(queryText, [req.params.id]).then((result) => {
      res.send(result.rows);
    }).catch(error => {

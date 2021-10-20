@@ -13,6 +13,8 @@ function ChallengeList() {
 
     useEffect(() => {
         dispatch({type: 'FETCH_CHALLENGES'});
+        dispatch({type: 'FETCH_CHALLENGE_ATTEMPTS' });
+        dispatch({type: 'FETCH_CHALLENGE_SUCCESS'});
     }, []);
 
     return <div>

@@ -9,11 +9,19 @@ function ChallengeListItem({challenge}) {
     const dispatch = useDispatch();
     const history = useHistory();
     const challengeId = challenge.id;
+    const challengeAttempts = [];
+    const challengeSuccess = [];
 
-    useEffect(() => {
-        //dispatch({type: 'FETCH_CHALLENGE_ATTEMPTS', payload: {id: challengeId} });
-        //dispatch({type: 'FETCH_CHALLENGE_SUCCESS', payload: {id: challengeId}});
-    }, []);
+    for(let attempt of attempts) {
+        if (attempt.challenge_id === challengeId) {
+            challengeAttempts.push(attempt);
+            if(attempt.success) {
+                challengeSuccess.push(attempt);
+            }
+        }
+    }
+
+
 
     const handleAttempt = () => {
         console.log('attempting');
@@ -25,7 +33,7 @@ function ChallengeListItem({challenge}) {
         <h4>{challenge.title}</h4>
         <p>Cipher Type: {challenge.name}</p>
         <p>Created by: {challenge.username}</p>
-        {/*<p>Success Rate: {successes.length} / {attempts.length} </p>*/}
+        <p>Success Rate: {challengeSuccess.length} / {challengeAttempts.length} </p>
         <p>{challenge.encrypted}</p>
 
         <button
