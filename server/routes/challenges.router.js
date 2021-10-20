@@ -46,7 +46,8 @@ router.get('/single/:id', rejectUnauthenticated, (req, res) => {
  * GET the challenges created by a specific user
  */
 router.get('/user-created/:id', rejectUnauthenticated, (req, res) => {
-  const queryText = `SELECT * FROM "challenges" 
+  const queryText = `SELECT "challenges"."id", "encrypted", "decrypted", "title", "name", "key", "type_code" 
+  FROM "challenges" 
   JOIN "ciphers" ON "challenges"."cipher_id" = "ciphers"."id"
   WHERE "creator_id" = $1;`;
   pool.query(queryText, [req.params.id]).then((result) => {

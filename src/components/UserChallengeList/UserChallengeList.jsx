@@ -8,14 +8,13 @@ import UserChallengeListItem from '../UserChallengeListItem/UserChallengeListIte
 function UserChallengeList() {
   // Using hooks we're creating local state for a "heading" variable with
   // a default value of 'Functional Component'
-  const store = useSelector((store) => store);
   const user = useSelector(store => store.user);
   const challenges = useSelector(store => store.challenges.userChallenges);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    
     dispatch({type: 'FETCH_CREATED_CHALLENGES', payload: {id: user.id}  });
+    dispatch({type: 'FETCH_CHALLENGE_ATTEMPTS'});
   }, [])
 
   return (

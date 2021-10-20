@@ -25,10 +25,10 @@ router.get('/total', rejectUnauthenticated, (req, res) => {
  * GET the number of successful attempts for the challenge
  * with the specificied ID
  */
-router.get('/success/:id', rejectUnauthenticated, (req, res) => {
+router.get('/success', rejectUnauthenticated, (req, res) => {
   const queryText = `SELECT * FROM "attempts"
-  WHERE "challenge_id" = $1 AND "success" = true;`;
-  pool.query(queryText, [req.params.id]).then(result => {
+  WHERE "success" = true;`;
+  pool.query(queryText).then(result => {
     res.send(result.rows);
   }).catch(error => {
     res.sendStatus(500);
