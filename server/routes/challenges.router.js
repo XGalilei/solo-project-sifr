@@ -99,7 +99,8 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   const newCiphertext = req.body.encrypted;
   const newKey = req.body.key;
   const newTitle = req.body.title;
-  const challengeId = req.body.id;
+  const challengeId = req.params.id;
+  console.log('check');
   pool.query(queryText, [newTitle, newCiphertext, newPlaintext, newKey, challengeId])
   .then(result => {
     res.sendStatus(200);

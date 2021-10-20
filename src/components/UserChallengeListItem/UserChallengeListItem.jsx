@@ -6,7 +6,6 @@ function UserChallengeListItem({challenge}) {
     const history = useHistory();
     const dispatch = useDispatch();
     const attempts = useSelector(store => store.attempts.allAttempts);
-    const successes = useSelector(store => store.attempts.successes);
     const challengeAttempts = [];
     const challengeSuccess = [];
 

@@ -13,7 +13,7 @@ function UserPage() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch({type: 'FETCH_CREATED_CHALLENGES', payload: {id: user.id}  });
+    dispatch({type: 'FETCH_CHALLENGES'});
   }, []);
 
   return (

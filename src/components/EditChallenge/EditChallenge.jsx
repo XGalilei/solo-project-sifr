@@ -10,6 +10,7 @@ function EditChallenge(props) {
 
     const challenge = useSelector(store => store.challenges.singleChallenge);
     const [plaintext, setPlaintext] = useState(challenge.decrypted);
+    const [ciphertext, setCiphertext] = useState(challenge.encrypted);
     const [title, setTitle] = useState(challenge.title);
     const [key, setKey] = useState(challenge.key);
     const dispatch = useDispatch();
@@ -17,16 +18,17 @@ function EditChallenge(props) {
 
 
     const submitChanges = () => {
+        setCiphertext(encrypt(plaintext, key, challenge.cipher_id));
         const updatedChallenge = {
             decrypted: plaintext,
-            encrypted: encrypt(plaintext, key, challenge.cipher_id),
+            encrypted: ciphertext,
             key: key,
             title: title,
             id: challenge.id
         }
-        console.log(updatedChallenge)
+        
         dispatch({type: 'EDIT_CHALLENGE', payload: updatedChallenge});
-        console.log('Challenge editing complete');
+        console.log(updatedChallenge);
         history.push('/user');
     }
 

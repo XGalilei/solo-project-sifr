@@ -41,6 +41,7 @@ function Nav() {
                   <Link className="dropdown-content"
                   key={cipher.id}
                   to={`/cipher/${cipher.id}`} 
+                  onClick={() => {dispatch({type: 'FETCH_SINGLE_CIPHER', payload: cipher.id})}}
                   >
                     {cipher.name}
                 </Link>

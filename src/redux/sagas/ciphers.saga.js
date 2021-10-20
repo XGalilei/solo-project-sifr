@@ -19,9 +19,9 @@ function* fetchCiphers() {
 
 function* fetchSingleCipher(action) {
     try {
-        const cipher = action.payload.id;
+        const cipher = action.payload;
         const response = yield axios.get(`/api/cipher/${cipher}`);
-        yield put({type: 'SET_CIPHER', payload: response.data})
+        yield put({type: 'SET_CIPHER', payload: response.data});
     }
     catch(error) {
         console.log('Get cipher request failed', error);

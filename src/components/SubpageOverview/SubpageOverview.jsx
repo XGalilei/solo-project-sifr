@@ -13,8 +13,8 @@ function SubpageOverview(props) {
 
   useEffect(() => {
     console.log(props);
-    const id = props.match.params.id;
-    dispatch({type: 'FETCH_SINGLE_CIPHER', payload: id})
+    //const id = props.match.params.id;
+    //dispatch({type: 'FETCH_SINGLE_CIPHER', payload: id})
   }, []);
 
   return (
