@@ -28,7 +28,7 @@ function FeedbackForm(props) {
 
   return (
     <div>
-      <h2>Under Construction...</h2>
+      <h2>Feedback</h2>
       <form>
         <textarea placeholder="Leave feedback here"
         value={feedback}
