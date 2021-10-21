@@ -19,14 +19,12 @@ import InfoPage from '../InfoPage/InfoPage';
 import LandingPage from '../LandingPage/LandingPage';
 import LoginPage from '../LoginPage/LoginPage';
 import RegisterPage from '../RegisterPage/RegisterPage';
-import CipherNav from '../CipherNav/CipherNav';
 import FeedbackForm from '../FeedbackForm/FeedbackForm';
 
 import SubpageCipher from '../SubpageCipher/SubpageCipher';
 import SubpageHistory from '../SubpageHistory/SubpageHistory';
 import SubpageOverview from '../SubpageOverview/SubpageOverview';
 
-import ChallengeList from '../ChallengeList/ChallengeList';
 import ChallengePage from '../ChallengePage/ChallengePage';
 import NewChallengeForm from '../NewChallengeForm/NewChallengeForm';
 

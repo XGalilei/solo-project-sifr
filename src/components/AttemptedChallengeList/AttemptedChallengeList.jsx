@@ -1,8 +1,12 @@
 import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import AttemptedChallengeListItem from "../AttemptedChallengeListItem/AttemptedChallengeListItem";
 
+/**
+ * AttemptedChallengeList holds all challenges that have been attempted
+ * by the logged-in user. 
+ * 
+ */
 function AttemptedChallengeList() {
 
     const user = useSelector(store => store.user);

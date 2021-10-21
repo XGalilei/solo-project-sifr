@@ -3,7 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import ChallengeListItem from '../ChallengeListItem/ChallengeListItem';
 
 /**
- * Holds all challenges from the database and enters them in the
+ * The ChallengeList holds all challenges from the database, and holds them for
+ * usage in the "Challenges" page. 
  * 
  */
 function ChallengeList() {

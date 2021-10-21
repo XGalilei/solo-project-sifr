@@ -1,11 +1,14 @@
-import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+
+/**
+ * Holds all relevant information of a challenge for usage on the "Challenges" page.
+ * 
+ */
 function ChallengeListItem({challenge}) {
 
     const user = useSelector(store => store.user);
     const attempts = useSelector(store => store.attempts.allAttempts);
-    const successes = useSelector(store => store.attempts.successes);
     const dispatch = useDispatch();
     const history = useHistory();
     const challengeId = challenge.id;
@@ -14,6 +17,10 @@ function ChallengeListItem({challenge}) {
     const challengeSuccess = [];
     let complete = false;
 
+    /**
+     * Admittedly a piecemeal attempt (albeit the only one that seemed to work)
+     * at gathering the necessary attempts for the specified challenge. 
+     */
     for(let attempt of attempts) {
         if (attempt.challenge_id === challengeId) {
             challengeAttempts.push(attempt);
