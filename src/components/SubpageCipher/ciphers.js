@@ -97,11 +97,19 @@ function decryptCaesar(message, key) {
 //VIGENERE CIPHER SUPPORT
 
 function encryptVigenere(message, key) {
-
+    let result = '';
+    for(let i = 0; i < message.length; i++) {
+        result += encryptCaesar(message.charAt(i), key.charAt(i % key.length));
+    }
+    return result;
 }
 
 function decryptVigenere(message, key) {
-
+    let result = '';
+    for (let i = 0; i < message.length; i++) {
+        result += decryptCaesar(message.charAt(i), key.charAt(i % key.length));
+    }
+    return result;
 }
 
 // MORSE CODE SUPPORT

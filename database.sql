@@ -37,7 +37,7 @@ VALUES ('Morse Code',
 'Simple yet (more or less) effective',
 'It all began with Caesar'
 ),
-('Vigenere Cipher',
+('Vigenère Cipher',
 1,
 'Caesar on steroids',
 'Another thing from the French'
