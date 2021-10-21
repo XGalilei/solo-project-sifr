@@ -4,9 +4,15 @@ body,
   height: 100%;
 }
 
+@import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Exo&display=swap');
+
 body {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
+  font-family: 'Exo', sans-serif;
   margin: 0px;
+  background-color: #03030a;
+  color: #f8f8f8;
 }
 
 img {
@@ -29,12 +35,13 @@ Button
 .btn {
   display: inline-block;
   padding: 10px 20px;
-  border-color: #014041;
+  border-color: #0929b9;
   border-width: 1px 1px 3px;
   border-radius: 4px;
-  background-color: #00acb0;
+  background-color: #04145a;
+  font-family: 'Teko', sans-serif;
   color: #f8f8f8;
-  font-size: 1.1rem;
+  font-size: 1.5rem;
   outline: 0;
   cursor: pointer;
 }
@@ -46,7 +53,7 @@ Button
 
 .btn_sizeSm {
   padding: 10px 15px;
-  font-size: 0.8rem;
+  font-size: 1.1rem;
 }
 
 .btn_sizeFull {
@@ -55,7 +62,7 @@ Button
 }
 
 .btn:hover {
-  background-color: #008183;
+  background-color: #0929b9;
   text-decoration: none;
 }
 
@@ -101,7 +108,7 @@ Form Treatment
   max-width: 100%;
   padding: 25px;
   margin: 0 auto 20px;
-  background-color: #efefef;
+  background-color: #191f18;
   border-radius: 3px;
   box-shadow: 0 1px 2px rgb(0, 0, 0, 0.4);
 }

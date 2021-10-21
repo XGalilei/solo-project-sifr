@@ -10,7 +10,6 @@ function SubpageHistory(props) {
   const cipher = useSelector(store => store.ciphers.singleCipher);
 
   useEffect(() => {
-    console.log(props);
     //const id = props.match.params.id;
     //dispatch({type: 'FETCH_SINGLE_CIPHER', payload: id})
   }, []);

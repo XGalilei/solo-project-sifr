@@ -14,63 +14,71 @@ function Nav() {
   }, []);
 
   return (
-    <div className="nav">
-      <Link to="/home">
-        <h2 className="nav-title">SIFR</h2>
-      </Link>
-      <div>
-        {/* If no user is logged in, show these links */}
-        {user.id === null &&
-          // If there's no user, show login/registration links
-          <Link className="navLink" to="/login">
-            Login / Register
-          </Link>
-        }
-
-        <Link className="navLink" to="/about">
-          About
+    <div>
+      {user.id ?
+        <Link
+        className="btn btn_asLink"
+         to="/user">
+          Profile
+        </Link> :
+        <Link
+        className="btn btn_asLink"
+        to="/login">
+          Login
+        </Link>}
+      <div className="nav">
+        <Link to="/home">
+          <h2 className="nav-title">SIFR</h2>
         </Link>
+        <div>
+          {/* If no user is logged in, show these links */}
+          {user.id === null &&
+            // If there's no user, show login/registration links
+            <Link className="navLink" to="/login">
+              Login / Register
+            </Link>
+          }
 
-        <div className="dropdown">
-          Ciphers
-          <br/>
-          {ciphers.map(cipher => {
-            console.log(cipher);
-            return (
-              <div key={cipher.id}>
-                  <Link className="dropdown-content"
+          <Link className="navLink" to="/about">
+            About
+          </Link>
+
+          <div className="dropdown">
+            <div className="dropbtn">Ciphers</div>
+            <div className="dropdown-content">
+              {ciphers.map(cipher => {
+                return <Link className="dropLink"
                   key={cipher.id}
-                  to={`/cipher/${cipher.id}`} 
-                  onClick={() => {dispatch({type: 'FETCH_SINGLE_CIPHER', payload: cipher.id})}}
-                  >
-                    {cipher.name}
+                  to={`/cipher/${cipher.id}`}
+                  onClick={() => { dispatch({ type: 'FETCH_SINGLE_CIPHER', payload: cipher.id }) }}
+                >
+                  {cipher.name}<br />
                 </Link>
-                <br/>
-                </div>
-            );
-          })}
+
+              })}
+            </div>
+          </div>
+
+
+
+
+
+          {/* If a user is logged in, show these links */}
+          {user.id && (
+            <>
+              <Link className="navLink" to="/challenges">
+                Challenges
+              </Link>
+
+              <Link className="navLink" to="/feedback">
+                Feedback
+              </Link>
+
+              <LogOutButton className="navLink" />
+            </>
+          )}
+
         </div>
-
-
-        {/* If a user is logged in, show these links */}
-        {user.id && (
-          <>
-            <Link className="navLink" to="/challenges">
-              Challenges
-            </Link>
-
-            <Link className="navLink" to="/feedback">
-              Feedback
-            </Link>
-
-            <Link className="navLink" to="/user">
-              Profile
-            </Link>
-
-            <LogOutButton className="navLink" />
-          </>
-        )}
-
       </div>
     </div>
   );
