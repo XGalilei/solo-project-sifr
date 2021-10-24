@@ -5,7 +5,6 @@ function* attemptsSaga() {
     yield takeEvery('FETCH_CHALLENGE_ATTEMPTS', fetchChallengeAttempts);
     yield takeEvery('MAKE_ATTEMPT', makeAttempt);
     yield takeEvery('FETCH_CHALLENGE_SUCCESS', fetchChallengeSuccess);
-    //yield takeEvery('FETCH_USER_ATTEMPTS', fetchUserAttempts);
     yield takeEvery('DELETE_CHALLENGE_ATTEMPTS', deleteChallengeAttempts);
 }
 
@@ -30,10 +29,6 @@ function* fetchChallengeSuccess() {
     const response = yield axios.get(`api/attempts/success/`);
     yield put({ type: 'SET_ATTEMPT_SUCCESS', payload: response.data });
 }
-
-//function* fetchUserAttempts() {
-//
-//}
 
 function* deleteChallengeAttempts(action) {
     try {

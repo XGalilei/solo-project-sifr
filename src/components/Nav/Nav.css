@@ -14,11 +14,9 @@
 }
 
 .nav-title {
-  font-size: 24px;
+  font-size: 48px;
   font-weight: 700;
   color: #f2f2f2;
-  padding-left: 10px;
-  margin: 0;
 }
 
 .navLink, .dropbtn {
@@ -67,4 +65,13 @@
 
 .dropLink:hover {
   background-color: #0a2396;
+}
+
+.right {
+  float: right;
+  padding: 10px;
+}
+
+.btn_asLink {
+  padding: 0px 10px;
 }

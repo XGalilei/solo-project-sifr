@@ -7,12 +7,12 @@ function* feedbackSaga() {
 
 function* postFeedback(action) {
     try{
-        yield axios.post('/api/feedback', action.payload);
-        yield put({type: 'SET_FEEDBACK'});
+        yield axios.post('/api/feedback', {text: action.payload.text});
+        yield put({type: 'SET_FEEDBACK', payload: 'complete'});
     }
     catch(error) {
         console.error('Error in posting feedback:', error);
-        alert('Attempt failed');
+        //alert('Attempt failed');
     }
 }
 

@@ -18,8 +18,8 @@ function ChallengeList() {
         dispatch({type: 'FETCH_CHALLENGE_SUCCESS'});
     }, []);
 
-    return <div>
-        <h2>Under Construction...</h2>
+    return <div className="container">
+        <h2>Challenges</h2>
         {challenges.map(challenge => {
             console.log(challenge);
             return <ChallengeListItem

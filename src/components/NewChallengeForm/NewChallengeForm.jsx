@@ -39,16 +39,16 @@ function NewChallengeForm() {
 
     //only show the form information once a cipher has been chosen
     return <div>
-        <form onSubmit={() => submitChallenge()}>
+        <form className="container" onSubmit={() => submitChallenge()}>
 
-            <select>
+            <select className="btn">
                 {/* A cipher must be selected before anything can happen */}
-                <option onClick={() => setSelected(false)}>
+                <option className="btn"onClick={() => setSelected(false)}>
                     Select a value...
                 </option>
 
                 {ciphers.map(cipherOp => {
-                    return <option
+                    return <option className="btn"
                     key={cipherOp.id} 
                     value={cipherOp.id}
                         onClick={() => {
@@ -65,25 +65,29 @@ function NewChallengeForm() {
                 }
             </select>
             {selected ? <>
+            <br/>
                 <input placeholder="title"
                     value={title}
                     onChange={(event) => setTitle(event.target.value)}
                 />
+                <br />
                 <input placeholder="plaintext"
                     value={plaintext}
                     onChange={(event) => setPlainText(event.target.value)}
                 />
+                <br/>
                 {cipher.type_code === 1
                     ? <input placeholder="key" 
                     value={key}
                     onChange={(event) => setKey(event.target.value)}
                     />
                     : ''}
-                <button>Submit</button>
+                    <br/>
+                <button className="btn">Submit</button>
             </> : ''}
 
         </form>
-        <button onClick={() => history.push('/challenges')}>Cancel</button>
+        <button className="btn" onClick={() => history.push('/challenges')}>Cancel</button>
     </div>;
 }
 

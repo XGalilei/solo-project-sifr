@@ -30,7 +30,7 @@ function UserChallengeListItem({challenge}) {
 
     }
 
-    return <div>
+    return <div className="container">
         <p>{challenge.title}</p>
         <p>Cipher Type: {challenge.name}</p>
         <p>Success: {challengeSuccess.length} / {challengeAttempts.length}</p>
@@ -39,8 +39,8 @@ function UserChallengeListItem({challenge}) {
         {challenge.type_code === 1 ?
         <p>Key: {challenge.key}</p>
         : ''}
-        <button onClick={edit}>Edit</button>
-        <button onClick={deleteChallenge}>Delete</button>       
+        <button className="btn" onClick={edit}>Edit</button>
+        <button className="btn" onClick={deleteChallenge}>Delete</button>       
     </div>;
 }
 

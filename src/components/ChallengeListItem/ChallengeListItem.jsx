@@ -48,7 +48,7 @@ function ChallengeListItem({challenge}) {
         <p>Success Rate: {challengeSuccess.length} / {challengeAttempts.length} </p>
         <p>{challenge.encrypted}</p>
 
-        <button
+        <button className="btn"
         disabled={creatorId === user.id || complete}
         onClick={handleAttempt}
         > {complete ? "Challenge Complete" : "Attempt Challenge"}

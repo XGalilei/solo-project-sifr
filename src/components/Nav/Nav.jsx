@@ -15,21 +15,29 @@ function Nav() {
 
   return (
     <div>
+      <div className="right">
       {user.id ?
         <Link
-        className="btn btn_asLink"
-         to="/user">
+          className="btn_asLink"
+          to="/user">
           Profile
         </Link> :
         <Link
-        className="btn btn_asLink"
-        to="/login">
+          className="btn_asLink"
+          to="/login">
           Login
-        </Link>}
-      <div className="nav">
-        <Link to="/home">
-          <h2 className="nav-title">SIFR</h2>
         </Link>
+        }
+      {user.id ?
+        <LogOutButton className="btn_asLink" />
+        : ''
+        }
+      </div>
+      <Link to="/home">
+        <h2 className="nav-title">SIFR</h2>
+      </Link>
+      <div className="nav">
+
         <div>
           {/* If no user is logged in, show these links */}
           {user.id === null &&
@@ -74,7 +82,6 @@ function Nav() {
                 Feedback
               </Link>
 
-              <LogOutButton className="navLink" />
             </>
           )}
 

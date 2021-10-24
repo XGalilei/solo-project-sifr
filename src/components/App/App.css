@@ -6,10 +6,12 @@ body,
 
 @import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Exo&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
 
 body {
   /*font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;*/
-  font-family: 'Exo', sans-serif;
+  /*font-family: 'Exo', sans-serif;*/
+  font-family: 'Quantico', sans-serif;
   margin: 0px;
   background-color: #03030a;
   color: #f8f8f8;
@@ -44,6 +46,11 @@ Button
   font-size: 1.5rem;
   outline: 0;
   cursor: pointer;
+}
+
+.btn_complete {
+  background-color: #444;
+  color: #f8f8f8;
 }
 
 .btn_sizeMin {
@@ -116,4 +123,5 @@ Form Treatment
 input {
   margin: 5px;
   margin-bottom: 10px;
+  font-family: 'Quantico', sans-serif;
 }

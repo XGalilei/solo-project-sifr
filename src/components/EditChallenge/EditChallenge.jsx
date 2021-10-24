@@ -55,9 +55,10 @@ function EditChallenge(props) {
                 :
                 ''
                 }
-                <button onClick={submitChanges}>Submit</button>
+                <br/>
+                <button className="btn" onClick={submitChanges}>Submit</button>
             </form>
-            <button onClick={() => cancelChanges}>Cancel</button>
+            <button className="btn" onClick={() => cancelChanges}>Cancel</button>
         </div>
     );
 }
