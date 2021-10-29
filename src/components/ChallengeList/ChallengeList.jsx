@@ -27,6 +27,8 @@ function ChallengeList() {
             challenge={challenge}/>;
         })
         }
+        {/*Used for proper indentation */}
+        <p className="clear"></p> 
     </div>;
 }
 

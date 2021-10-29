@@ -28,12 +28,12 @@ function AttemptChallengeForm(props) {
             challenge: challenge.id,
             success: result
         };
-        console.log(result ? `Congratulations, that's correct!` : `Sorry, you're wrong`);
+        alert(result ? `Congratulations, that's correct!` : `Sorry, you're wrong`);
         dispatch({type: 'MAKE_ATTEMPT', payload: attemptObject});
-        history.push('/challenges')
+        history.push('/challenges');
     }
 
-    return <div>
+    return <div className="container">
         <p>{challenge.title}</p>
         <p>{challenge.name}</p>
         <p>{challenge.encrypted}</p>
@@ -47,7 +47,7 @@ function AttemptChallengeForm(props) {
             value={answer}
             onChange={(event) => setAnswer(event.target.value)}
             />
-            <button onClick={submitAnswer}>Submit</button>
+            <button className="btn" onClick={submitAnswer}>Submit</button>
         </form>
     </div>;
 }

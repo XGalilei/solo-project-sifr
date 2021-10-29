@@ -45,11 +45,17 @@ function AttemptedChallengeListItem({ challenge }) {
         <p>Created by: {challenge.username}</p>
         <p>Status: {complete ? 'Complete' : 'Incomplete'}</p>
         <p>You have attempted this challenge {challengeAttempts.length} times</p>
-        <button
-        disabled={complete} 
-        onClick={attemptChallenge}>
-            {complete ? "Challenge Complete" : "Attempt Challenge"}
-        </button>
+        {
+            complete ?
+            <div className="btn btn_complete">Challenge Complete</div> 
+            : 
+            <button 
+            onClick={attemptChallenge}
+            className="btn">
+                Attempt Challenge
+            </button>
+        }
+
     </div>
 }
 

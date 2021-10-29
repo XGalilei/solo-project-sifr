@@ -6,7 +6,12 @@ const {
 } = require('../modules/authentication-middleware');
 
 /**
- * GET route: used to gather all challenges
+ * @api {get} /api/challenges ChallengeList
+ * @apiName GetChallenges
+ * @apiGroup Challenges
+ * 
+ * @apiSuccess {Object[]} challenges All active challenges.
+ * @apiSuccess {Number} challenges.id The ids of challenges.
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
   const queryText = `SELECT "challenges"."id", "encrypted", "decrypted", "title", "name", "key", "type_code", "username", "creator_id"
@@ -100,7 +105,6 @@ router.put('/:id', rejectUnauthenticated, (req, res) => {
   const newKey = req.body.key;
   const newTitle = req.body.title;
   const challengeId = req.params.id;
-  console.log('check');
   pool.query(queryText, [newTitle, newCiphertext, newPlaintext, newKey, challengeId])
   .then(result => {
     res.sendStatus(200);

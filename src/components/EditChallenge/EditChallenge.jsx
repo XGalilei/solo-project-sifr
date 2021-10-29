@@ -19,6 +19,7 @@ function EditChallenge(props) {
 
     const submitChanges = () => {
         setCiphertext(encrypt(plaintext, key, challenge.cipher_id));
+        console.log('Ciphertext:', ciphertext);
         const updatedChallenge = {
             decrypted: plaintext,
             encrypted: ciphertext,
@@ -33,7 +34,7 @@ function EditChallenge(props) {
     }
 
     const cancelChanges = () => {
-        history.push('/challenges');
+        history.push('/user');
     }
 
     return (
@@ -58,7 +59,7 @@ function EditChallenge(props) {
                 <br/>
                 <button className="btn" onClick={submitChanges}>Submit</button>
             </form>
-            <button className="btn" onClick={() => cancelChanges}>Cancel</button>
+            <button className="btn" onClick={cancelChanges}>Cancel</button>
         </div>
     );
 }

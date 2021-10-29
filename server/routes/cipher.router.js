@@ -8,7 +8,7 @@ const router = express.Router();
  */
 router.get('/', (req, res) => {
   // GET route code here
-  const queryText = `SELECT * FROM "ciphers";`;
+  const queryText = `SELECT * FROM "ciphers" ORDER BY "id";`;
   pool.query(queryText).then((result) => {
     res.send(result.rows);
   }).catch(error => {

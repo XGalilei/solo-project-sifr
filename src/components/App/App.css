@@ -15,6 +15,7 @@ body {
   margin: 0px;
   background-color: #03030a;
   color: #f8f8f8;
+  font-size: 1.3rem;
 }
 
 img {
@@ -50,7 +51,7 @@ Button
 
 .btn_complete {
   background-color: #444;
-  color: #f8f8f8;
+  color: #000000;
 }
 
 .btn_sizeMin {
@@ -73,6 +74,10 @@ Button
   text-decoration: none;
 }
 
+.btn_complete:hover {
+  background-color: #444;
+}
+
 /* This line makes the "Register" and "Login" buttons look like links */
 .btn_asLink {
   padding: 0;
@@ -81,7 +86,7 @@ Button
   border-radius: 0;
   background: none;
   font: inherit;
-  color: #444;
+  color: #777;
 }
 
 .btn_asLink:hover {
@@ -124,4 +129,18 @@ input {
   margin: 5px;
   margin-bottom: 10px;
   font-family: 'Quantico', sans-serif;
+}
+
+/* --------------------------------------------------------------------------------
+Box
+-------------------------------------------------------------------------------- */
+.box {
+  float: left;
+  margin: 20px;
+  position: relative;
+  width: 40%;
+}
+
+p.clear {
+  clear: both;
 }

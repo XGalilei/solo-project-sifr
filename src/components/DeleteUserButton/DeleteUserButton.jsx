@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
-import {useSelector} from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
 function DeleteUserButton(props) {
@@ -12,17 +12,21 @@ function DeleteUserButton(props) {
   const handleClick = (event) => {
     event.preventDefault();
     console.log('clicked delete user');
-    dispatch({
-      type: 'DELETE_USER',
-      payload: user.id
-    });
+    let final = confirm('Are you sure you want to delete your account? There is no undoing this decision!');
+    if (final) {
+      dispatch({
+        type: 'DELETE_USER',
+        payload: user.id
+      });
+    }
+
   }
 
   return (
     <div>
       <button
-      className={props.className} 
-      onClick={handleClick}>Delete Account</button>
+        className={props.className}
+        onClick={handleClick}>Delete Account</button>
     </div>
   );
 }

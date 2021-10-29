@@ -1,20 +1,21 @@
 import React from 'react';
 
-// This is one of our simplest components
-// It doesn't have local state,
-// It doesn't dispatch any redux actions or display any part of redux state
-// or even care what the redux state is'
-
+/**
+ * A basic overview page of SIFR.
+ * 
+ */
 function AboutPage() {
   return (
     <div className="container">
       <div>
-        <p>Welcome to SIFR, an exploration of ciphers and codes that have shaped our world and understanding,</p>
-        <p>What does "sifr" mean, you might ask? (I know you probably won't, but I need some sort of set-up here)</p>
-        <p>Literally, it's the Arabic word for "zero", but it's also the origin of the English word "cipher". </p>
+        <p>While classical cryptography and codes have largely been supplanted by more modern inventions, they still have a place in our minds and imaginations. 
+          SIFR is a place to learn more about these ciphers and codes, as well as test your understanding by making and/or attempting challenges in them.</p>
+        <p>SIFR is still very much a work in progress, and there is plenty more to be added. The three encodings currently supported are intended to serve as an example for 
+          the content that is to come. Feedback is greatly appreciated, so feel free to leave some.</p>
       </div>
     </div>
   );
+
 }
 
 export default AboutPage;

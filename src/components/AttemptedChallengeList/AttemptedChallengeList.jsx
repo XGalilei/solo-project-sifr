@@ -18,7 +18,7 @@ function AttemptedChallengeList() {
         dispatch({type: 'FETCH_CHALLENGE_ATTEMPTS'});
     },[]);
 
-    return <div>
+    return <div className="container">
         <h2>Attempted Challenges:</h2>
         {attempted.map(challenge => {
             return <AttemptedChallengeListItem 

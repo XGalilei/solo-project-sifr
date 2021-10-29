@@ -26,7 +26,9 @@ function UserChallengeListItem({challenge}) {
     }
 
     const deleteChallenge = () => {
-        dispatch({type: 'DELETE_CHALLENGE', payload: {id: challenge.id}});
+        let warning = confirm('Are you sure you want to delete this challenge?');
+        warning ? dispatch({type: 'DELETE_CHALLENGE', payload: {id: challenge.id}}) 
+        : console.log("Ok, we won't delete this challenge");
 
     }
 
