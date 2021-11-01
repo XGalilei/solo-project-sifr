@@ -16,7 +16,7 @@ const morse_code = ['=.===', '===.=.=.=', '===.=.===.==', '===.=.=',
  * @param {*} key the key necessary for encryption
  * @param {*} cipherNumber references the proper cipher
  */
-export function encrypt(message, key, cipherNumber) {
+function encrypt(message, key, cipherNumber) {
     switch(cipherNumber) {
         case 1:
             return encodeMorse(message);
@@ -33,7 +33,7 @@ export function encrypt(message, key, cipherNumber) {
  * @param {*} key 
  * @param {*} cipherNumber 
  */
-export function decrypt(message, key, cipherNumber) {
+function decrypt(message, key, cipherNumber) {
     switch(cipherNumber) {
         case 1:
             return decodeMorse(message);
@@ -141,3 +141,5 @@ function decodeMorse(message) {
     }
     return result;
 }
+
+modules.export = {encrypt, decrypt};

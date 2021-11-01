@@ -40,7 +40,8 @@
     "description": "API documentation for SIFR"
   },
   "devDependencies": {
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "supertest": "^6.1.6"
   },
   "browserslist": [
     ">0.2%",
