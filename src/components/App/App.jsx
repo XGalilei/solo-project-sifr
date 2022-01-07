@@ -3,7 +3,7 @@ import {
   HashRouter as Router,
   Redirect,
   Route,
-  Switch,
+  Switch
 } from 'react-router-dom';
 
 import { useDispatch, useSelector } from 'react-redux';

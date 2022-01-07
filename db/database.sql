@@ -1,4 +1,4 @@
---CREATE DATABASE sifr;
+CREATE DATABASE sifr;
 
 
 -- USER is a reserved keyword with Postgres

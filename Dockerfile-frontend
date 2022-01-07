@@ -1,0 +1,16 @@
+FROM node:16 as builder
+RUN mkdir -p /usr/app/first-docker-run
+WORKDIR /usr/app/first-docker-run
+COPY package.json /usr/app/first-docker-run/
+RUN npm install
+COPY . /usr/app/first-docker-run/
+RUN npm run build 
+
+FROM nginx:alpine
+
+ADD docker_helpers/entrypoint.sh /entrypoint.sh
+ADD docker_helpers/nginx-template.conf /nginx-template.conf
+RUN chmod +x /entrypoint.sh
+
+COPY --from=builder /usr/app/first-docker-run/build /opt/app
+ENTRYPOINT [ "/entrypoint.sh" ]

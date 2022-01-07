@@ -1,0 +1,46 @@
+version: '3.7'
+
+volumes:
+  scratchpad: 
+
+services: 
+  frontend:
+    depends_on:
+      - backend
+    environment:
+      - PORT=3000
+      - BACKEND=http://backend:5000/
+    build:
+      context: .
+      dockerfile: Dockerfile-frontend
+    ports:
+      - '3000:3000'
+    volumes:
+      - scratchpad:/scratch
+  backend: 
+    depends_on:
+      - db
+    environment: 
+      - DB_USER=postgres
+      - DB_PASSWORD=access-granted
+      - DB_HOST=db
+      - DB_NAME=sifr
+    build: 
+      context: . 
+      dockerfile: Dockerfile
+    # ports: 
+    #  - '5000:5000'
+    volumes:
+      - scratchpad:/pad
+  db: 
+    image: postgres:11.9
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=access-granted
+      - POSTGRES_DB=sifr
+      - PGDATA=/var/lib/postgresql/data/pgdata 
+    volumes:
+      - ./tmp/pg:/var/lib/postgresql/data/pgdata
+      - ./db:/docker-entrypoint-initdb.d
+    # ports: 
+    #  - '5433:5432'
